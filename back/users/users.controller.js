@@ -7,8 +7,9 @@ const userService = require('./user.service');
 
 // routes
 router.post('/authenticate', authenticateSchema, authenticate);
+router.post('/profile', emailSchema, profie);
 router.post('/register', registerSchema, register);
-router.post('/forgotPassword', forgotSchema, forgotPassword);
+router.post('/forgotPassword', emailSchema, forgotPassword);
 router.get('/', authorize(), getAll);
 router.get('/current', authorize(), getCurrent);
 router.get('/:id', authorize(), getById);
@@ -27,15 +28,11 @@ function authenticateSchema(req, res, next) {
 
 function authenticate(req, res, next) {
     userService.authenticate(req.body)
-        // .then(user => res.json(user))
-        .then(user => {
-            console.log('authenticate -----', user)
-            res.json(user)
-        })
+        .then(user => res.json(user))
         .catch(next);
 }
 
-function forgotSchema(req, res, next) {
+function emailSchema(req, res, next) {
     const schema = Joi.object({
         email: Joi.string().required(),
     });
@@ -45,6 +42,12 @@ function forgotSchema(req, res, next) {
 function forgotPassword(req, res, next) {
     userService.forgotPassword({email: req.body.email})
         .then(user => res.json({status: 'success', user, message: "Default password is '12345678'"}))
+        .catch(next);
+}
+
+function profie(req, res, next) {
+    userService.profile(req.body)
+        .then(user => res.json(user))
         .catch(next);
 }
 

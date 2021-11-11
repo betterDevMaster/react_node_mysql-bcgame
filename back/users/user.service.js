@@ -5,6 +5,7 @@ const db = require('_helpers/db');
 
 module.exports = {
     authenticate,
+    profile,
     getAll,
     getById,
     forgotPassword,
@@ -18,6 +19,14 @@ async function authenticate({ email, password }) {
 
     if (!user || !(await bcrypt.compare(password, user.hash)))
         throw 'Email or Password is incorrect';
+
+    // authentication successful
+    const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+    return { ...omitHash(user.get()), token };
+}
+
+async function profile({ email }) {
+    const user = await db.User.scope('withHash').findOne({ where: { email } });
 
     // authentication successful
     const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });

@@ -19,12 +19,14 @@ const isValidToken = (token) => {
     return decodedToken.exp > currentTime
 }
 
-const setSession = (token) => {
+const setSession = (token, email) => {
     if (token) {
         localStorage.setItem('token', token)
+        localStorage.setItem('email', email)
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
     } else {
         localStorage.removeItem('token')
+        localStorage.removeItem('email')
         delete axios.defaults.headers.common.Authorization
     }
 }
@@ -68,7 +70,7 @@ const AuthContext = createContext({
     method: 'JWT',
     login: () => Promise.resolve(),
     forgotPassword: () => Promise.resolve(),
-    logout: () => {},
+    logout: () => { },
     register: () => Promise.resolve(),
     socialLogin: () => Promise.resolve(),
 })
@@ -81,11 +83,10 @@ export const AuthProvider = ({ children }) => {
             email: userEmail,
             password,
         })
-        const { token, firstname, lastname, email, username,  createdAt, updatedAt } = response.data
-        const user = {firstname, lastname, username, email, createdAt, updatedAt}
-        console.log('login --------', response.data, response)
-     
-        setSession(token)
+        const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
+        const user = { firstname, lastname, username, email, createdAt, updatedAt }
+
+        setSession(token, email)
         dispatch({
             type: 'LOGIN',
             payload: {
@@ -115,10 +116,9 @@ export const AuthProvider = ({ children }) => {
 
     const socialLogin = async (socialUser) => {
         const response = await axios.post('/socials/register', socialUser)
-        const { token, firstname, lastname, email, username,  createdAt, updatedAt } = response.data
-        const user = {firstname, lastname, username, email, createdAt, updatedAt}
-        console.log('social login --------', response.data, response)
-        setSession(token)
+        const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
+        const user = { firstname, lastname, username, email, createdAt, updatedAt }
+        setSession(token, email)
         dispatch({
             type: 'LOGIN',
             payload: {
@@ -133,15 +133,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        ;(async () => {
+        ; (async () => {
             try {
                 const token = window.localStorage.getItem('token')
-
+                const userEmail = window.localStorage.getItem('email')
                 if (token && isValidToken(token)) {
-                    setSession(token)
-                    const response = await axios.get('/api/auth/profile')
-                    const { user } = response.data
-
+                    const response = await axios.post('/users/profile', { email: userEmail})
+                    const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
+                    const user = { firstname, lastname, username, email, createdAt, updatedAt }
+                    setSession(token, email)
                     dispatch({
                         type: 'INIT',
                         payload: {
@@ -159,7 +159,6 @@ export const AuthProvider = ({ children }) => {
                     })
                 }
             } catch (err) {
-                console.error(err)
                 dispatch({
                     type: 'INIT',
                     payload: {

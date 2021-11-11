@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+    Button,
     Icon,
     IconButton,
     MenuItem,
@@ -16,6 +17,7 @@ import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
+import ProfileDialog from 'app/views/material-kit/dialog/ProfileDialog'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     topbar: {
@@ -63,13 +65,13 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 }))
 
 const Layout1Topbar = () => {
+    const [ menuSetting, setMenuSetting ] = useState({ profile: false, setting: false })
     const theme = useTheme()
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
     const { logout, user } = useAuth()
     const isMdScreen = useMediaQuery(theme.breakpoints.down('md'))
     const fixed = settings?.layout1Settings?.topbar?.fixed
-
     const updateSidebarMode = (sidebarSettings) => {
         updateSettings({
             layout1Settings: {
@@ -95,6 +97,10 @@ const Layout1Topbar = () => {
         }
 
         updateSidebarMode({ mode })
+    }
+
+    const handleProfile = () => {
+        setMenuSetting({ ...menuSetting, profile: true })
     }
 
     return (
@@ -154,13 +160,13 @@ const Layout1Topbar = () => {
                                 </Link>
                             </MenuItem>
                             <MenuItem>
-                                <Link
+                                <div
                                     className={classes.menuItem}
-                                    to="/page-layouts/user-profile"
+                                    onClick={handleProfile}
                                 >
                                     <Icon> person </Icon>
                                     <span className="pl-4"> Profile </span>
-                                </Link>
+                                </div>
                             </MenuItem>
                             <MenuItem className={classes.menuItem}>
                                 <Icon> settings </Icon>
@@ -177,6 +183,9 @@ const Layout1Topbar = () => {
                     </div>
                 </div>
             </div>
+            {menuSetting && menuSetting.profile &&
+                <ProfileDialog />
+            }
         </div>
     )
 }

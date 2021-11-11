@@ -10,7 +10,7 @@ import { buttonStyles } from './utilities/_button'
 import { typographyStyles } from './utilities/_typography'
 import { commonStyles } from './utilities/_common'
 import { animationStyles } from './utilities/_animations'
-// import { landingStyles } from "./utilities/_landing";
+import { customStyles } from "./utilities/_custom";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -23,7 +23,7 @@ const GlobalCss = ({ children }) => {
     typographyStyles()
     commonStyles()
     animationStyles()
-    // landingStyles();
+    customStyles();
 
     return children || null
 }

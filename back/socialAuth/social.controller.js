@@ -17,10 +17,7 @@ function registerSchema(req, res, next) {
 
 function register(req, res, next) {
     socialService.create(req.body)
-        .then(user => {
-            console.log('user -----', user)
-            res.json(user)
-        })
+        .then(user => res.json(user))
         .catch(next);
 }
 
