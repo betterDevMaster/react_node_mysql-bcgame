@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Card, Grid, Button } from '@material-ui/core'
+import { Card, Grid, Button, CircularProgress, } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
+import useAuth from 'app/hooks/useAuth'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
@@ -19,6 +20,9 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 const ForgotPassword = () => {
     const [state, setState] = useState({})
     const classes = useStyles()
+    const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState({ status: 'error', content: '' })
+    const { forgotPassword } = useAuth()
 
     const handleChange = ({ target: { name, value } }) => {
         setState({
@@ -27,8 +31,16 @@ const ForgotPassword = () => {
         })
     }
 
-    const handleFormSubmit = (event) => {
-        console.log(state)
+    const handleFormSubmit = async (event) => {
+        setLoading(true)
+        try {
+            const res = await forgotPassword(state.email)
+            if (res.status === 'success')
+                setMessage({ status: 'success', content: res.message })
+        } catch (e) {
+            setMessage({ status: 'error', content: e.message })
+        }
+        setLoading(false)
     }
 
     let { email } = state
@@ -69,16 +81,20 @@ const ForgotPassword = () => {
                                         'email is not valid',
                                     ]}
                                 />
+                                {message && (
+                                    <p className= {message.status === 'error' ? "text-error" : 'text-green'}>{message.content}</p>
+                                )}
                                 <div className="flex items-center">
                                     <Button
-                                        variant="contained"
                                         color="primary"
+                                        disabled={loading}
                                         type="submit"
+                                        variant="contained"
                                     >
                                         Reset Password
                                     </Button>
                                     <span className="ml-4 mr-2">or</span>
-                                    <Link to="/session/signin">
+                                    <Link to="/signin">
                                         <Button className="capitalize">
                                             Sign in
                                         </Button>

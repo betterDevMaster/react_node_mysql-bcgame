@@ -35,5 +35,8 @@ export const borderStyles = makeStyles(({ palette, ...theme }) => ({
             borderBottomRightRadius: '300px !important',
             overflow: 'hidden !important',
         },
+        '.rounded-circle': {
+            borderRadius: '50% !important'
+        },
     },
 }))

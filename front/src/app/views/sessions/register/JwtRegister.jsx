@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import {
+    Box,
     Button,
     Card,
     Checkbox,
     CircularProgress,
     FormControlLabel,
     Grid,
+    IconButton
 } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import { makeStyles } from '@material-ui/core/styles'
@@ -13,6 +15,7 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import useAuth from 'app/hooks/useAuth'
 import history from 'history.js'
+import SocialButton from 'app/views/utilities/SocialButton'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
@@ -29,7 +32,7 @@ const JwtRegister = () => {
     const [loading, setLoading] = useState(false)
     const [state, setState] = useState({})
     const classes = useStyles()
-    const { register } = useAuth()
+    const { register, socialLogin } = useAuth()
     const [message, setMessage] = useState('')
 
     const handleChange = ({ target: { name, value } }) => {
@@ -46,11 +49,25 @@ const JwtRegister = () => {
         try {
             const res = await register(state.firstname, state.lastname, state.email, state.username, state.password)
             if (res.status === 'success')
-                history.push('/session/signin')
+                history.push('/signin')
         } catch (e) {
             setMessage(e.message)
             setLoading(false)
         }
+    }
+
+    const handleSocialLogin = async (user) => {
+        const { _profile, _token } = user
+        try {
+            await socialLogin(_profile)
+            history.push('/')
+        } catch (e) {
+            setMessage(e.message)
+        }
+    }
+
+    const handleSocialLoginFailure = (err) => {
+        setMessage(err)
     }
 
     let { firstname, lastname, username, email, password, agreement } = state
@@ -182,11 +199,49 @@ const JwtRegister = () => {
                                         )}
                                     </div>
                                     <span className="mx-2 ml-5">or</span>
-                                    <Link to="/session/signin">
+                                    <Link to="/signin">
                                         <Button className="capitalize">
                                             Sign in
                                         </Button>
                                     </Link>
+                                </div>
+                                <div className="flex justify-center items-center">
+                                    <SocialButton
+                                        provider='google'
+                                        appId='746799703532-5bbn094o81ui0g9o2dkv0g1jf2kpejjd.apps.googleusercontent.com' //loclahost:3000
+                                        onLoginSuccess={handleSocialLogin}
+                                        onLoginFailure={handleSocialLoginFailure}
+                                        key={'google'}
+                                        id={'google'}
+                                    >
+                                        <Box
+                                            display="inline-block"
+                                            marginLeft=".5rem"
+                                            marginRight=".5rem"
+                                        >
+                                            <IconButton variant="contained" className="btn-google-plus btn-icon-only rounded-circle" title="Google +">
+                                                <Box fontSize="14px" component="i" className="fab fa-google-plus-g" />
+                                            </IconButton>
+                                        </Box>
+                                    </SocialButton>
+                                    <SocialButton
+                                        provider='facebook'
+                                        appId='214637516273116'
+                                        onLoginSuccess={handleSocialLogin}
+                                        onLoginFailure={handleSocialLoginFailure}
+                                        key={'facebook'}
+                                        id={'facebook'}
+                                    >
+                                        <Box
+                                            display="inline-block"
+                                            marginLeft=".5rem"
+                                            marginRight=".5rem"
+                                        >
+                                            <IconButton variant="contained" className="btn-facebook btn-icon-only rounded-circle" title="Facebook">
+                                                <Box fontSize="14px" component="i" className="fab fa-facebook" />
+                                            </IconButton>
+                                        </Box>
+                                    </SocialButton>
                                 </div>
                             </ValidatorForm>
                         </div>

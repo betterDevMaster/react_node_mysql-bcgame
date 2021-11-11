@@ -45,7 +45,7 @@ const AuthGuard = ({ children }) => {
         return (
             <Redirect
                 to={{
-                    pathname: '/session/signin',
+                    pathname: '/signin',
                     state: { redirectUrl: previouseRoute },
                 }}
             />

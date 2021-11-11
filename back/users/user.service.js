@@ -7,6 +7,7 @@ module.exports = {
     authenticate,
     getAll,
     getById,
+    forgotPassword,
     create,
     update,
     delete: _delete
@@ -31,10 +32,23 @@ async function getById(id) {
     return await getUser(id);
 }
 
+async function forgotPassword(cond) {
+    const user = await db.User.findOne({ where: cond })
+    // hash password if it was entered
+    const params = {}
+    params.hash = await bcrypt.hash(config.defaultPassword, 10);
+
+    // copy params to user and save
+    Object.assign(user, params);
+    await user.save();
+
+    return omitHash(user.get());
+}
+
 async function create(params) {
     // validate
-    if (await db.User.findOne({ where: { username: params.username } })) {
-        throw 'Username "' + params.username + '" is already taken';
+    if (await db.User.findOne({ where: { email: params.email } })) {
+        throw 'Email "' + params.email + '" is already taken';
     }
 
     // hash password

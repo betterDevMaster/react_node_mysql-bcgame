@@ -22,7 +22,7 @@ const redirectRoute = [
 
 const errorRoute = [
     {
-        component: () => <Redirect to="/session/404" />,
+        component: () => <Redirect to="/404" />,
     },
 ]
 

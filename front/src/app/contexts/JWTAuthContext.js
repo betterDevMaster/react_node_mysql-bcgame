@@ -57,15 +57,6 @@ const reducer = (state, action) => {
                 user: null,
             }
         }
-        // case 'REGISTER': {
-        //     const { user } = action.payload
-
-        //     return {
-        //         ...state,
-        //         isAuthenticated: true,
-        //         user,
-        //     }
-        // }
         default: {
             return { ...state }
         }
@@ -76,8 +67,10 @@ const AuthContext = createContext({
     ...initialState,
     method: 'JWT',
     login: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     logout: () => {},
     register: () => Promise.resolve(),
+    socialLogin: () => Promise.resolve(),
 })
 
 export const AuthProvider = ({ children }) => {
@@ -90,6 +83,7 @@ export const AuthProvider = ({ children }) => {
         })
         const { token, firstname, lastname, email, username,  createdAt, updatedAt } = response.data
         const user = {firstname, lastname, username, email, createdAt, updatedAt}
+        console.log('login --------', response.data, response)
      
         setSession(token)
         dispatch({
@@ -98,6 +92,13 @@ export const AuthProvider = ({ children }) => {
                 user,
             },
         })
+    }
+
+    const forgotPassword = async (email) => {
+        const response = await axios.post('/users/forgotPassword', {
+            email
+        })
+        return response.data
     }
 
     const register = async (firstname, lastname, email, username, password) => {
@@ -110,6 +111,20 @@ export const AuthProvider = ({ children }) => {
         })
 
         return response.data
+    }
+
+    const socialLogin = async (socialUser) => {
+        const response = await axios.post('/socials/register', socialUser)
+        const { token, firstname, lastname, email, username,  createdAt, updatedAt } = response.data
+        const user = {firstname, lastname, username, email, createdAt, updatedAt}
+        console.log('social login --------', response.data, response)
+        setSession(token)
+        dispatch({
+            type: 'LOGIN',
+            payload: {
+                user,
+            },
+        })
     }
 
     const logout = () => {
@@ -166,8 +181,10 @@ export const AuthProvider = ({ children }) => {
                 ...state,
                 method: 'JWT',
                 login,
+                forgotPassword,
                 logout,
                 register,
+                socialLogin,
             }}
         >
             {children}

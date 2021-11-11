@@ -1,4 +1,5 @@
 ﻿require('rootpath')();
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,6 +12,7 @@ app.use(cors());
 
 // api routes
 app.use('/users', require('./users/users.controller'));
+app.use('/socials', require('./socialAuth/social.controller'));
 
 // global error handler
 app.use(errorHandler);

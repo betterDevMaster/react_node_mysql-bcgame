@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import {
+    Box,
     Button,
     Card,
     Checkbox,
     CircularProgress,
     FormControlLabel,
     Grid,
+    IconButton
 } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
-
 import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
+import SocialButton from 'app/views/utilities/SocialButton'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
@@ -34,12 +36,12 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 
 const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
-    const [userInfo, setUserInfo] = useState({
-        email: 'jason@ui-lib.com',
-        password: 'dummyPass',
-    })
     const [message, setMessage] = useState('')
-    const { login } = useAuth()
+    const [userInfo, setUserInfo] = useState({
+        email: '',
+        password: '',
+    })
+    const { login, socialLogin } = useAuth()
 
     const classes = useStyles()
 
@@ -52,12 +54,26 @@ const JwtLogin = () => {
     const handleFormSubmit = async (event) => {
         setLoading(true)
         try {
-            const res = await login(userInfo.email, userInfo.password)
+            await login(userInfo.email, userInfo.password)
             history.push('/')
         } catch (e) {
             setMessage(e.message)
             setLoading(false)
         }
+    }
+
+    const handleSocialLogin = async (user) => {
+        const { _profile, _token } = user
+        try {
+            await socialLogin(_profile)
+            history.push('/')
+        } catch (e) {
+            setMessage(e.message)
+        }
+    }
+
+    const handleSocialLoginFailure = (err) => {
+        setMessage(err)
     }
 
     return (
@@ -95,6 +111,7 @@ const JwtLogin = () => {
                                         'this field is required',
                                         'email is not valid',
                                     ]}
+                                    autoFocus
                                 />
                                 <TextValidator
                                     className="mb-3 w-full"
@@ -108,29 +125,38 @@ const JwtLogin = () => {
                                     validators={['required']}
                                     errorMessages={['this field is required']}
                                 />
-                                <FormControlLabel
-                                    className="mb-3 min-w-288"
-                                    name="agreement"
-                                    onChange={handleChange}
-                                    control={
-                                        <Checkbox
-                                            size="small"
-                                            onChange={({
-                                                target: { checked },
-                                            }) =>
-                                                handleChange({
-                                                    target: {
-                                                        name: 'agreement',
-                                                        value: checked,
-                                                    },
-                                                })
-                                            }
-                                            checked={userInfo.agreement || true}
-                                        />
-                                    }
-                                    label="Remeber me"
-                                />
-
+                                <div className="flex justify-between">
+                                    <FormControlLabel
+                                        className="min-w-100"
+                                        name="agreement"
+                                        onChange={handleChange}
+                                        control={
+                                            <Checkbox
+                                                size="small"
+                                                onChange={({
+                                                    target: { checked },
+                                                }) =>
+                                                    handleChange({
+                                                        target: {
+                                                            name: 'agreement',
+                                                            value: checked,
+                                                        },
+                                                    })
+                                                }
+                                                checked={userInfo.agreement || true}
+                                            />
+                                        }
+                                        label="Remeber me"
+                                    />
+                                    <Button
+                                        className="text-primary"
+                                        onClick={() =>
+                                            history.push('/session/forgot-password')
+                                        }
+                                    >
+                                        Forgot password?
+                                    </Button>
+                                </div>
                                 {message && (
                                     <p className="text-error">{message}</p>
                                 )}
@@ -164,14 +190,44 @@ const JwtLogin = () => {
                                         Sign up
                                     </Button>
                                 </div>
-                                <Button
-                                    className="text-primary"
-                                    onClick={() =>
-                                        history.push('/session/forgot-password')
-                                    }
-                                >
-                                    Forgot password?
-                                </Button>
+                                <div className="flex justify-center items-center">
+                                    <SocialButton
+                                        provider='google'
+                                        appId='746799703532-5bbn094o81ui0g9o2dkv0g1jf2kpejjd.apps.googleusercontent.com' //loclahost:3000
+                                        onLoginSuccess={handleSocialLogin}
+                                        onLoginFailure={handleSocialLoginFailure}
+                                        key={'google'}
+                                        id={'google'}
+                                    >
+                                        <Box
+                                            display="inline-block"
+                                            marginLeft=".5rem"
+                                            marginRight=".5rem"
+                                        >
+                                            <IconButton variant="contained" className="btn-google-plus btn-icon-only rounded-circle" title="Google +">
+                                                <Box fontSize="14px" component="i" className="fab fa-google-plus-g" />
+                                            </IconButton>
+                                        </Box>
+                                    </SocialButton>
+                                    <SocialButton
+                                        provider='facebook'
+                                        appId='214637516273116'
+                                        onLoginSuccess={handleSocialLogin}
+                                        onLoginFailure={handleSocialLoginFailure}
+                                        key={'facebook'}
+                                        id={'facebook'}
+                                    >
+                                        <Box
+                                            display="inline-block"
+                                            marginLeft=".5rem"
+                                            marginRight=".5rem"
+                                        >
+                                            <IconButton variant="contained" className="btn-facebook btn-icon-only rounded-circle" title="Facebook">
+                                                <Box fontSize="14px" component="i" className="fab fa-facebook" />
+                                            </IconButton>
+                                        </Box>
+                                    </SocialButton>
+                                </div>
                             </ValidatorForm>
                         </div>
                     </Grid>

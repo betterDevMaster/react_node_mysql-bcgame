@@ -6,5 +6,6 @@
         "password": "",
         "database": "bcgame"
     },
-    "secret": "BCGAME_SECRET"
+    "secret": "BCGAME_SECRET",
+    "defaultPassword": "12345678"
 }
