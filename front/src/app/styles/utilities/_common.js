@@ -58,5 +58,25 @@ export const commonStyles = makeStyles(({ palette, ...theme }) => ({
         '.opacity-1': {
             opacity: 1,
         },
+        '@media screen and (min-width: 621px)': {
+            '::-webkit-scrollbar': {
+                width: '5px',
+                height: '5px',
+                backgroundColor: 'transparent',
+                borderRadius: '5px',
+            }
+        },
+        '@media screen and (min-width: 621px)': {
+            '::-webkit-scrollbar-button': {
+                display: 'none',
+            }
+        },
+        '@media screen and (min-width: 621px)': {
+            '::-webkit-scrollbar-thumb': {
+                backgroundColor: 'rgb(36, 38, 43)',
+                transition: 'all 0.5s ease 0s',
+                borderRadius: '5px',
+            }
+        },
     },
 }))

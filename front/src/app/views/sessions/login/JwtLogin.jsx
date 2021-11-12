@@ -151,7 +151,7 @@ const JwtLogin = () => {
                                     <Button
                                         className="text-primary"
                                         onClick={() =>
-                                            history.push('/session/forgot-password')
+                                            history.push('/forgot-password')
                                         }
                                     >
                                         Forgot password?
@@ -184,7 +184,7 @@ const JwtLogin = () => {
                                     <Button
                                         className="capitalize"
                                         onClick={() =>
-                                            history.push('/session/signup')
+                                            history.push('/signup')
                                         }
                                     >
                                         Sign up

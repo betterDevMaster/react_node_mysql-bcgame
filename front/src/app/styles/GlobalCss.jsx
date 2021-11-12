@@ -10,7 +10,7 @@ import { buttonStyles } from './utilities/_button'
 import { typographyStyles } from './utilities/_typography'
 import { commonStyles } from './utilities/_common'
 import { animationStyles } from './utilities/_animations'
-import { customStyles } from "./utilities/_custom";
+import { profileDialogStyles } from "./utilities/_profileDialog";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -23,7 +23,7 @@ const GlobalCss = ({ children }) => {
     typographyStyles()
     commonStyles()
     animationStyles()
-    customStyles();
+    profileDialogStyles();
 
     return children || null
 }

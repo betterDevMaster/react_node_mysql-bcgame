@@ -103,6 +103,10 @@ const Layout1Topbar = () => {
         setMenuSetting({ ...menuSetting, profile: true })
     }
 
+    const handleProfileDialogClose = (status) => {
+        setMenuSetting({ ...menuSetting, profile: status })
+    }
+
     return (
         <div className={classes.topbar}>
             <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
@@ -183,9 +187,7 @@ const Layout1Topbar = () => {
                     </div>
                 </div>
             </div>
-            {menuSetting && menuSetting.profile &&
-                <ProfileDialog />
-            }
+            <ProfileDialog status={menuSetting.profile} onclosehandler={handleProfileDialogClose}/>
         </div>
     )
 }
