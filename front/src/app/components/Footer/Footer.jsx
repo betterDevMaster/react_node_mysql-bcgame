@@ -34,21 +34,23 @@ const Footer = () => {
 
     return (
         <ThemeProvider theme={footerTheme}>
-            <AppBar
+            {/* <AppBar
                 color="primary"
                 position="static"
                 className={classes.appbar}
             >
                 <Toolbar className={clsx('flex items-center', classes.footer)}>
                     <div className="flex items-center container w-full">
-                        {/* <a
-              href="https://github.com/uilibrary/matx-react"
-              target="_blank"
-              className="mr-2"
-              rel="noopener noreferrer"
-            >
-              <Button variant="contained">Download Free version</Button>
-            </a> */}
+                        <a
+                            href="https://github.com/uilibrary/matx-react"
+                            target="_blank"
+                            className="mr-2"
+                            rel="noopener noreferrer"
+                        >
+                            <Button variant="contained">
+                                Download Free version
+                            </Button>
+                        </a>
                         <a href="https://ui-lib.com/downloads/matx-pro-react-admin/">
                             <Button variant="contained" color="secondary">
                                 Get MatX Pro
@@ -61,7 +63,7 @@ const Footer = () => {
                         </p>
                     </div>
                 </Toolbar>
-            </AppBar>
+            </AppBar> */}
         </ThemeProvider>
     )
 }

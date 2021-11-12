@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 import dashboardRoutes from './views/dashboard/DashboardRoutes'
+import profileRoutes from './views/profile/ProfileRoutes'
 import utilitiesRoutes from './views/utilities/UtilitiesRoutes'
 
 import materialRoutes from './views/material-kit/MaterialRoutes'
@@ -28,6 +29,7 @@ const errorRoute = [
 
 const routes = [
     ...dashboardRoutes,
+    ...profileRoutes,
     ...materialRoutes,
     ...utilitiesRoutes,
     ...chartsRoute,

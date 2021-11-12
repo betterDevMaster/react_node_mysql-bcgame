@@ -108,7 +108,7 @@ const MatxCustomizer = (props) => {
                     className={clsx({ [classes.label]: true, open })}
                     onClick={tooglePanel}
                 >
-                    DEMOS
+                    THEMES
                 </span>
             </Tooltip>
 
@@ -139,7 +139,7 @@ const MatxCustomizer = (props) => {
                                 <Icon>close</Icon>
                             </IconButton>
                         </div>
-                        <div className="px-6 mb-4 flex">
+                        {/* <div className="px-6 mb-4 flex">
                             <Button
                                 variant="outlined"
                                 color={tabIndex === 0 ? 'secondary' : 'primary'}
@@ -155,7 +155,7 @@ const MatxCustomizer = (props) => {
                             >
                                 Settings
                             </Button>
-                        </div>
+                        </div> */}
 
                         <Scrollbar
                             options={{ suppressScrollX: true }}
@@ -297,44 +297,44 @@ const demoLayouts = [
             },
         },
     },
-    {
-        name: 'Dark Theme',
-        thumbnail: '/assets/images/screenshots/layout3-customizer.png',
-        isPro: true,
-        options: {
-            activeLayout: 'layout2',
-            activeTheme: 'blue',
-            layout1Settings: {
-                leftSidebar: {
-                    mode: 'full',
-                    theme: 'slateDark1',
-                    bgOpacity: 0.92,
-                },
-                topbar: {
-                    theme: 'purpleDark1',
-                    fixed: true,
-                },
-            },
-            footer: {
-                theme: 'slateDark1',
-            },
-        },
-    },
-    {
-        name: 'Horizontal Navigation',
-        thumbnail: '/assets/images/screenshots/layout4-customizer.png',
-        isPro: true,
-        options: {
-            activeLayout: 'layout2',
-            activeTheme: 'purple1',
-            layout2Settings: {
-                mode: 'full',
-            },
-            footer: {
-                theme: 'slateDark1',
-            },
-        },
-    },
+    // {
+    //     name: 'Dark Theme',
+    //     thumbnail: '/assets/images/screenshots/layout3-customizer.png',
+    //     isPro: true,
+    //     options: {
+    //         activeLayout: 'layout2',
+    //         activeTheme: 'blue',
+    //         layout1Settings: {
+    //             leftSidebar: {
+    //                 mode: 'full',
+    //                 theme: 'slateDark1',
+    //                 bgOpacity: 0.92,
+    //             },
+    //             topbar: {
+    //                 theme: 'purpleDark1',
+    //                 fixed: true,
+    //             },
+    //         },
+    //         footer: {
+    //             theme: 'slateDark1',
+    //         },
+    //     },
+    // },
+    // {
+    //     name: 'Horizontal Navigation',
+    //     thumbnail: '/assets/images/screenshots/layout4-customizer.png',
+    //     isPro: true,
+    //     options: {
+    //         activeLayout: 'layout2',
+    //         activeTheme: 'purple1',
+    //         layout2Settings: {
+    //             mode: 'full',
+    //         },
+    //         footer: {
+    //             theme: 'slateDark1',
+    //         },
+    //     },
+    // },
 ]
 
 export default MatxCustomizer

@@ -49,7 +49,7 @@ const SecondarySidebarContent = () => {
 
             <MatxCustomizer />
 
-            <ShoppingCart />
+            {/* <ShoppingCart /> */}
 
             <ChatHead
                 icon={
