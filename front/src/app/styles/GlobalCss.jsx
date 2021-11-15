@@ -10,7 +10,7 @@ import { buttonStyles } from './utilities/_button'
 import { typographyStyles } from './utilities/_typography'
 import { commonStyles } from './utilities/_common'
 import { animationStyles } from './utilities/_animations'
-import { imageUploadStyle } from "./utilities/_imageUpload";
+import { settingsStyle } from "./utilities/_settings";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -23,7 +23,7 @@ const GlobalCss = ({ children }) => {
     typographyStyles()
     commonStyles()
     animationStyles()
-    imageUploadStyle();
+    settingsStyle();
 
     return children || null
 }

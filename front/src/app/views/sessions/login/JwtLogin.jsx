@@ -209,7 +209,7 @@ const JwtLogin = () => {
                                             </IconButton>
                                         </Box>
                                     </SocialButton>
-                                    <SocialButton
+                                    {/* <SocialButton
                                         provider='facebook'
                                         appId='214637516273116'
                                         onLoginSuccess={handleSocialLogin}
@@ -226,7 +226,7 @@ const JwtLogin = () => {
                                                 <Box fontSize="14px" component="i" className="fab fa-facebook" />
                                             </IconButton>
                                         </Box>
-                                    </SocialButton>
+                                    </SocialButton> */}
                                 </div>
                             </ValidatorForm>
                         </div>

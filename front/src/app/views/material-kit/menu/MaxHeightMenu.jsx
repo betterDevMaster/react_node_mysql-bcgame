@@ -4,22 +4,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Icon } from '@material-ui/core'
 
-const options = [
-    'None',
-    'Atria',
-    'Callisto',
-    'Dione',
-    'Ganymede',
-    'Hangouts Call',
-    'Luna',
-    'Oberon',
-    'Phobos',
-    'Pyxis',
-    'Sedna',
-    'Titania',
-    'Triton',
-    'Umbriel',
-]
+const options = ['English', 'Spanish', 'Portuguese', 'Italish', 'German']
 
 const ITEM_HEIGHT = 48
 

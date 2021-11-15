@@ -55,7 +55,6 @@ async function forgotPassword(cond) {
 }
 
 async function create(params) {
-    console.log('create4-------', params)
     // validate
     if (await db.User.findOne({ where: { email: params.email } })) {
         throw 'Email "' + params.email + '" is already taken';

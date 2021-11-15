@@ -3,8 +3,9 @@ import { Card, Button, Icon } from '@material-ui/core'
 import ZoomIn from '@material-ui/icons/ZoomIn'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import AvatarEditor from 'react-avatar-editor'
+import { SimpleCard } from 'app/components'
 
-const UpgradeCard = ({ user, update }) => {
+const ProfileSetting = ({ user, update }) => {
     var editor = ''
     const [state, setState] = useState({
         username: user.name,
@@ -66,7 +67,7 @@ const UpgradeCard = ({ user, update }) => {
     }
 
     return (
-        <Card className="p-sm-24 mb-6">
+        <SimpleCard title="General Profile">
             <Card
                 elevation={0}
                 className="box-shadow-none text-center relative bg-light-primary p-sm-24"
@@ -141,8 +142,8 @@ const UpgradeCard = ({ user, update }) => {
                     </Button>
                 </ValidatorForm>
             </Card>
-        </Card>
+        </SimpleCard>
     )
 }
 
-export default UpgradeCard
+export default ProfileSetting

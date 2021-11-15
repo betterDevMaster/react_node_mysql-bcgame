@@ -1,44 +1,35 @@
 import React, { Fragment } from 'react'
-import { Grid, Card } from '@material-ui/core'
-import DoughnutChart from './shared/Doughnut'
+import { Grid } from '@material-ui/core'
 import StatCards from './shared/StatCards'
-import TopSellingTable from './shared/TopSellingTable'
-import RowCards from './shared/RowCards'
-import StatCards2 from './shared/StatCards2'
-import UpgradeCard from './shared/UpgradeCard'
-import Campaigns from './shared/Campaigns'
+import ProfileSetting from './shared/ProfileSetting'
+import GeneralSetting from './shared/GeneralSetting'
+import PrivacySetting from './shared/PrivacySetting'
+import SecuritySetting from './shared/SecuritySetting'
 import { useTheme } from '@material-ui/styles'
 import useAuth from 'app/hooks/useAuth'
 
 const Analytics = () => {
     const theme = useTheme()
     const { update, user } = useAuth()
-
+    const [curId, setCurId] = React.useState(0)
+    const handleCurrentSetting = (id) => {
+        setCurId(id)
+    }
     return (
         <Fragment>
             <div className="analytics m-sm-30 mt-6">
                 <Grid container spacing={3}>
                     <Grid item lg={4} md={4} sm={12} xs={12}>
-                        <StatCards user={user}/>
+                        <StatCards
+                            user={user}
+                            onItemClick={handleCurrentSetting}
+                        />
                     </Grid>
-
                     <Grid item lg={8} md={8} sm={12} xs={12}>
-                        {/* <Card className="px-6 py-4 mb-6">
-                            <div className="card-title">Traffic Sources</div>
-                            <div className="card-subtitle">Last 30 days</div>
-                            <DoughnutChart
-                                height="300px"
-                                color={[
-                                    theme.palette.primary.dark,
-                                    theme.palette.primary.main,
-                                    theme.palette.primary.light,
-                                ]}
-                            />
-                        </Card> */}
-
-                        <UpgradeCard user={user} update={update}/>
-
-                        {/* <Campaigns /> */}
+                        {curId === 0 && <ProfileSetting user={user} update={update} />}
+                        {curId === 1 && <GeneralSetting />}
+                        {curId === 2 && <PrivacySetting />}
+                        {curId === 3 && <SecuritySetting />}
                     </Grid>
                 </Grid>
             </div>

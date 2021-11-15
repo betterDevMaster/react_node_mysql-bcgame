@@ -22,6 +22,12 @@ export const spacingStyles = makeStyles(({ palette, ...theme }) => ({
                 padding: '16px !important',
             },
         },
+        '.p-sm-12': {
+            padding: '12px !important',
+            [theme.breakpoints.down('sm')]: {
+                padding: '6px !important',
+            },
+        },
         '.px-sm-24': {
             padding: '0px 24px !important',
             [theme.breakpoints.down('sm')]: {

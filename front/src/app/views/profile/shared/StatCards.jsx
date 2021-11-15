@@ -10,27 +10,34 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const StatCards = ({user}) => {
+const StatCards = ({ user, onItemClick }) => {
     const classes = useStyles()
 
+    const handleItem = (id) => {
+        onItemClick(id)
+    }
     return (
         <Grid container spacing={3} className="mb-3">
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-24 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
                     elevation={6}
                 >
                     <div className="flex items-center">
-                        <Icon className={classes.icon}>sentiment_very_satisfied</Icon>
+                        <Icon className={classes.icon}>
+                            sentiment_very_satisfied
+                        </Icon>
                         <div className="ml-3">
-                            <small className="text-muted">{user.firstName}&nbsp;{user.lastName}</small>
+                            <small className="text-muted">
+                                {user.firstName}&nbsp;{user.lastName}
+                            </small>
                             <h6 className="m-0 mt-1 text-primary font-medium">
                                 0
                             </h6>
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton>
+                        <IconButton onClick={() => handleItem(0)}>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -38,22 +45,19 @@ const StatCards = ({user}) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between align-center p-sm-24 bg-paper"
+                    className="flex flex-wrap justify-between align-center p-sm-12 bg-paper"
                     elevation={6}
                 >
                     <div className="flex items-center">
-                        <Icon className={classes.icon}>attach_money</Icon>
+                        <Icon className={classes.icon}>settings</Icon>
                         <div className="ml-3">
-                            <small className="text-muted line-height-1">
-                                This week Sales
-                            </small>
-                            <h6 className="m-0 mt-1 text-primary font-medium">
-                                $80,500
+                            <h6 className="text-muted line-height-1">
+                                Common Setting
                             </h6>
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton>
+                        <IconButton onClick={() => handleItem(1)}>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -61,22 +65,19 @@ const StatCards = ({user}) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-24 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
                     elevation={6}
                 >
                     <div className="flex items-center">
-                        <Icon className={classes.icon}>store</Icon>
+                        <Icon className={classes.icon}>account_box</Icon>
                         <div className="ml-3">
-                            <small className="text-muted">
-                                Inventory Status
-                            </small>
-                            <h6 className="m-0 mt-1 text-primary font-medium">
-                                8.5% Stock Surplus
+                            <h6 className="text-muted line-height-1">
+                                Privacy
                             </h6>
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton>
+                        <IconButton onClick={() => handleItem(2)}>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -84,22 +85,19 @@ const StatCards = ({user}) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-24 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
                     elevation={6}
                 >
                     <div className="flex items-center">
-                        <Icon className={classes.icon}>shopping_cart</Icon>
+                        <Icon className={classes.icon}>security</Icon>
                         <div className="ml-3">
-                            <small className="text-muted">
-                                Orders to deliver
-                            </small>
-                            <h6 className="m-0 mt-1 text-primary font-medium">
-                                305 Orders
+                            <h6 className="text-muted line-height-1">
+                                Security
                             </h6>
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton>
+                        <IconButton onClick={() => handleItem(3)}>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export const imageUploadStyle = makeStyles(({ palette, ...theme }) => ({
+export const settingsStyle = makeStyles(({ palette, ...theme }) => ({
     '@global': {
         '.thumbsContainer': {
             display: 'flex',
@@ -70,6 +70,21 @@ export const imageUploadStyle = makeStyles(({ palette, ...theme }) => ({
             background: 'transparent',
             border: 'none',
             cursor: 'pointer',
+        },
+        '.local-currency': {
+            width: '6.875rem',
+            height: '2.5rem',
+            borderRadius: '1.25rem',
+            marginTop: '0.875rem',
+            backgroundColor: 'rgba(37, 39, 46, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            color: 'rgb(245, 246, 247)',
+            '& .coin-icon': {
+                width: '1.5rem',
+                marginRight: '1.125rem',
+                marginLeft: '0.625rem',
+            }
         },
     },
 }))

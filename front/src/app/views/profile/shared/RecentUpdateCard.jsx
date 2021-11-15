@@ -40,19 +40,19 @@ const RecentUpdateCard = ({ notification, isFirstIndex, isLastIndex }) => {
                 </TimelineSeparator>
                 <TimelineContent>
                     <p className="mt-0 mb-5 text-muted uppercase">
-                        {format(
+                        {/* {format(
                             new Date(notification.timestamp),
                             'dd MMM, yyyy'
-                        )}
+                        )} */}
                     </p>
-                    <h4 className="mt-0 mb-4">{notification.title}</h4>
+                    <h4 className="mt-0 mb-4">"notification.title"</h4>
                     <p
                         className={clsx({
                             'm-0': true,
                             'pb-8': !isLastIndex,
                         })}
                     >
-                        {notification.subtitle}
+                        otification.subtitle
                     </p>
                 </TimelineContent>
             </TimelineItem>
