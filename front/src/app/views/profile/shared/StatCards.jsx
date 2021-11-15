@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 
 const StatCards = ({user}) => {
     const classes = useStyles()
-console.log('user- ---',user)
+
     return (
         <Grid container spacing={3} className="mb-3">
             <Grid item xs={12} md={12}>
@@ -23,7 +23,7 @@ console.log('user- ---',user)
                     <div className="flex items-center">
                         <Icon className={classes.icon}>sentiment_very_satisfied</Icon>
                         <div className="ml-3">
-                            <small className="text-muted">{user.firstname}&nbsp;{user.lastname}</small>
+                            <small className="text-muted">{user.firstName}&nbsp;{user.lastName}</small>
                             <h6 className="m-0 mt-1 text-primary font-medium">
                                 0
                             </h6>

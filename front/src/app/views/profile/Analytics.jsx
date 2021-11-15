@@ -12,7 +12,7 @@ import useAuth from 'app/hooks/useAuth'
 
 const Analytics = () => {
     const theme = useTheme()
-    const { logout, user } = useAuth()
+    const { update, user } = useAuth()
 
     return (
         <Fragment>
@@ -36,7 +36,7 @@ const Analytics = () => {
                             />
                         </Card> */}
 
-                        <UpgradeCard user={user}/>
+                        <UpgradeCard user={user} update={update}/>
 
                         {/* <Campaigns /> */}
                     </Grid>

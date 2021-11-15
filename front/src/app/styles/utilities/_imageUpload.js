@@ -40,5 +40,36 @@ export const imageUploadStyle = makeStyles(({ palette, ...theme }) => ({
                 cursor: 'pointer',
             }
         },
+        '.crop-area': {
+            position: 'relative',
+            opacity: '1 !important',
+            '& .upload': {
+                width: '3.75rem',
+                height: '3.75rem',
+                position: 'absolute',
+                zIndex: '11',
+                left: '50%',
+                top: '50%',
+                margin: '-1.875rem 0px 0px -1.875rem',
+                '& .icon': {
+                    width: '2.125rem',
+                    height: '2.125rem',
+                    fill: 'rgb(255, 255, 255)',
+                },
+                '& input': {
+                    opacity: '0',
+                    position: 'absolute',
+                    left: '0px',
+                    top: '0px',
+                    width: '100%',
+                    height: '100%',
+                }
+            },
+        },
+        '.btn-transback': {
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+        },
     },
 }))

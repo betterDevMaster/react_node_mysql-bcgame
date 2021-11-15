@@ -55,6 +55,7 @@ async function forgotPassword(cond) {
 }
 
 async function create(params) {
+    console.log('create4-------', params)
     // validate
     if (await db.User.findOne({ where: { email: params.email } })) {
         throw 'Email "' + params.email + '" is already taken';
@@ -64,31 +65,41 @@ async function create(params) {
     if (params.password) {
         params.hash = await bcrypt.hash(params.password, 10);
     }
-
+    if (!params.hasOwnProperty("profilePicURL"))
+        params.profilePicURL = ''
     // save user
-    await db.User.create(params);
+    const result = await db.User.create(params);
 }
 
 async function update(id, params) {
     const user = await getUser(id);
-
-    // validate
-    const usernameChanged = params.username && user.username !== params.username;
-    if (usernameChanged && await db.User.findOne({ where: { username: params.username } })) {
-        throw 'Username "' + params.username + '" is already taken';
-    }
-
-    // hash password if it was entered
-    if (params.password) {
-        params.hash = await bcrypt.hash(params.password, 10);
-    }
-
     // copy params to user and save
     Object.assign(user, params);
     await user.save();
-
-    return omitHash(user.get());
+    const result = await user.get()
+    return omitHash(result);
 }
+
+// async function update(id, params) {
+//     const user = await getUser(id);
+
+//     // validate
+//     const usernameChanged = params.username && user.username !== params.username;
+//     if (usernameChanged && await db.User.findOne({ where: { username: params.username } })) {
+//         throw 'Username "' + params.username + '" is already taken';
+//     }
+
+//     // hash password if it was entered
+//     if (params.password) {
+//         params.hash = await bcrypt.hash(params.password, 10);
+//     }
+
+//     // copy params to user and save
+//     Object.assign(user, params);
+//     await user.save();
+
+//     return omitHash(user.get());
+// }
 
 async function _delete(id) {
     const user = await getUser(id);

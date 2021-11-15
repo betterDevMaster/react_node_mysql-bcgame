@@ -35,6 +35,7 @@
     "qwest": "^4.5.0",
     "react": "^16.8.6",
     "react-apexcharts": "^1.3.7",
+    "react-avatar-editor": "^12.0.0",
     "react-beautiful-dnd": "^11.0.4",
     "react-big-calendar": "^0.24.6",
     "react-dom": "^16.8.6",

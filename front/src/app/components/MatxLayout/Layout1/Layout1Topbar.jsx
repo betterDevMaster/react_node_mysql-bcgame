@@ -147,12 +147,12 @@ const Layout1Topbar = () => {
                                 <div className={classes.userMenu}>
                                     <Hidden xsDown>
                                         <span>
-                                            Hi <strong>{user.username}</strong>
+                                            Hi <strong>{user.name}</strong>
                                         </span>
                                     </Hidden>
                                     <Avatar
                                         className="cursor-pointer"
-                                        src={user.avatar}
+                                        src={user.profilePicURL}
                                     />
                                 </div>
                             }

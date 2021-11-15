@@ -53,9 +53,9 @@ function profie(req, res, next) {
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        firstname: Joi.string().required(),
-        lastname: Joi.string().required(),
-        username: Joi.string().required(),
+        firstName: Joi.string().required(),
+        lastName: Joi.string().required(),
+        name: Joi.string().required(),
         email: Joi.string().required(),
         password: Joi.string().min(6).required()
     });
@@ -86,13 +86,22 @@ function getById(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schema = Joi.object({
-        firstName: Joi.string().empty(''),
-        lastName: Joi.string().empty(''),
-        username: Joi.string().empty(''),
-        password: Joi.string().min(6).empty('')
+        name: Joi.string().empty(''),
+        profilePicURL: Joi.string().empty(''),
     });
     validateRequest(req, next, schema);
 }
+
+// function updateSchema(req, res, next) {
+//     const schema = Joi.object({
+//         firstName: Joi.string().empty(''),
+//         lastName: Joi.string().empty(''),
+//         username: Joi.string().empty(''),
+//         password: Joi.string().min(6).empty(''),
+//         image: Joi.string().empty(''),
+//     });
+//     validateRequest(req, next, schema);
+// }
 
 function update(req, res, next) {
     userService.update(req.params.id, req.body)

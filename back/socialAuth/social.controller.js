@@ -11,6 +11,10 @@ router.post('/register', registerSchema, register);
 function registerSchema(req, res, next) {
     const schema = Joi.object({
         email: Joi.string().required(),
+        firstName: Joi.string().required(),
+        lastName: Joi.string().required(),
+        name: Joi.string().required(),
+        profilePicURL: Joi.string().required(),
     });
     validateRequest(req, next, schema);
 }

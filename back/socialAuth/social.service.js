@@ -13,10 +13,11 @@ async function create(user) {
     if (!await db.User.findOne({ where: { email: user.email } })) {
         const params = {}
         params.hash = await bcrypt.hash(config.defaultPassword, 10);
-        params.firstname = user.firstName
-        params.lastname = user.lastName
-        params.username = user.name
+        params.firstName = user.firstName
+        params.lastName = user.lastName
+        params.name = user.name
         params.email = user.email
+        params.profilePicURL = user.profilePicURL
         params.social = 1
         await db.User.create(params);
     }

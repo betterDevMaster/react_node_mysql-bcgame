@@ -73,6 +73,7 @@ const AuthContext = createContext({
     logout: () => { },
     register: () => Promise.resolve(),
     socialLogin: () => Promise.resolve(),
+    update: () => Promise.resolve(),
 })
 
 export const AuthProvider = ({ children }) => {
@@ -83,8 +84,8 @@ export const AuthProvider = ({ children }) => {
             email: userEmail,
             password,
         })
-        const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
-        const user = { firstname, lastname, username, email, createdAt, updatedAt }
+        const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
+        const user = { firstName, id, lastName, name, email, profilePicURL, createdAt, updatedAt }
 
         setSession(token, email)
         dispatch({
@@ -102,13 +103,22 @@ export const AuthProvider = ({ children }) => {
         return response.data
     }
 
-    const register = async (firstname, lastname, email, username, password) => {
+    const register = async (firstName, lastName, email, name, password) => {
         const response = await axios.post('/users/register', {
-            firstname,
-            lastname,
+            firstName,
+            lastName,
             email,
-            username,
+            name,
             password,
+        })
+
+        return response.data
+    }
+
+    const update = async (id, name, profilePicURL) => {
+        const response = await axios.put('/users/' + id, {
+            name,
+            profilePicURL,
         })
 
         return response.data
@@ -116,8 +126,8 @@ export const AuthProvider = ({ children }) => {
 
     const socialLogin = async (socialUser) => {
         const response = await axios.post('/socials/register', socialUser)
-        const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
-        const user = { firstname, lastname, username, email, createdAt, updatedAt }
+        const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
+        const user = { firstName, id, lastName, name, email, profilePicURL, createdAt, updatedAt }
         setSession(token, email)
         dispatch({
             type: 'LOGIN',
@@ -138,9 +148,10 @@ export const AuthProvider = ({ children }) => {
                 const token = window.localStorage.getItem('token')
                 const userEmail = window.localStorage.getItem('email')
                 if (token && isValidToken(token)) {
-                    const response = await axios.post('/users/profile', { email: userEmail})
-                    const { token, firstname, lastname, email, username, createdAt, updatedAt } = response.data
-                    const user = { firstname, lastname, username, email, createdAt, updatedAt }
+                    const config = { responseType: 'blob' };
+                    const response = await axios.post('/users/profile', { email: userEmail }, config)
+                    const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
+                    const user = { id, firstName, lastName, name, email, profilePicURL, createdAt, updatedAt }
                     setSession(token, email)
                     dispatch({
                         type: 'INIT',
@@ -183,6 +194,7 @@ export const AuthProvider = ({ children }) => {
                 forgotPassword,
                 logout,
                 register,
+                update,
                 socialLogin,
             }}
         >

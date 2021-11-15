@@ -4,11 +4,12 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        firstname: { type: DataTypes.STRING, allowNull: false },
-        lastname: { type: DataTypes.STRING, allowNull: false },
-        username: { type: DataTypes.STRING, allowNull: false },
+        firstName: { type: DataTypes.STRING, allowNull: false },
+        lastName: { type: DataTypes.STRING, allowNull: false },
+        name: { type: DataTypes.STRING, allowNull: false },
         email: { type: DataTypes.STRING, allowNull: false },
         hash: { type: DataTypes.STRING, allowNull: false },
+        profilePicURL: { type: DataTypes.TEXT('long') , allowNull: false },
         social: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0 },
     };
 
