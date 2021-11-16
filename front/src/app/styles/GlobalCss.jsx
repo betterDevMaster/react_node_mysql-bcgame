@@ -11,6 +11,7 @@ import { typographyStyles } from './utilities/_typography'
 import { commonStyles } from './utilities/_common'
 import { animationStyles } from './utilities/_animations'
 import { settingsStyle } from "./utilities/_settings";
+import { dashboardStyle } from "./utilities/_dashboard";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -24,6 +25,7 @@ const GlobalCss = ({ children }) => {
     commonStyles()
     animationStyles()
     settingsStyle();
+    dashboardStyle();
 
     return children || null
 }
