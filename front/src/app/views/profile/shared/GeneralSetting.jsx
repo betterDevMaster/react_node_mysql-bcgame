@@ -83,9 +83,9 @@ const GeneralSetting = () => {
                 <div className="flex justify-between items-center">
                     <div>
                         <h6 className="text-muted">Currency Setting</h6>
-                        <div class="local-currency">
+                        <div className="local-currency">
                             <img
-                                class="coin-icon"
+                                className="coin-icon"
                                 src="https://bc.game/coin/USD.black.png"
                             />
                             USD

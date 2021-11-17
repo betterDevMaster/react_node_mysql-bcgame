@@ -19,24 +19,23 @@ const Analytics = () => {
     const theme = useTheme()
 
     const imgItems = [
-        { width: '350px', src: '1.png' },
-        { width: '350px', src: '2.png' },
-        { width: '350px', src: '3.png' },
-        { width: '350px', src: '4.png' },
-        { width: '350px', src: '5.png' },
-        { width: '350px', src: '6.png' },
-        { width: '350px', src: '7.png' },
-        { width: '350px', src: '8.png' },
+        { src: '1.png' },
+        { src: '2.png' },
+        { src: '3.png' },
+        { src: '4.png' },
+        { src: '5.png' },
+        { src: '6.png' },
+        { src: '7.png' },
+        { src: '8.png' },
     ]
     const items = imgItems.map((item, index) => {
         return (
-            <div style={{ width: item.width }}>
-                <img
-                    className="slider-img"
-                    src={'/assets/images/slider/' + item.src}
-                    alt={item.src}
-                />
-            </div>
+            <img
+                key={index}
+                className="slider-img"
+                src={'/assets/images/slider/' + item.src}
+                alt={item.src}
+            />
         )
     })
     const responsive = {
@@ -63,7 +62,9 @@ const Analytics = () => {
                 <h4 className="card-title text-muted mb-4">CASINO GAME</h4>
                 <GameTypes />
                 <OriginalGames />
-                <h4 className="card-title text-muted mb-4">Biggest Winners today</h4>
+                <h4 className="card-title text-muted mb-4">
+                    Biggest Winners today
+                </h4>
                 <Winners />
                 <Lateset />
                 {/* <Grid container spacing={3}>

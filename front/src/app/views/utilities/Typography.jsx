@@ -116,7 +116,7 @@ const Typography = () => {
                                     </TableCell>
                                     <TableCell className="px-0 capitalize">
                                         {ReactHtmlParser(
-                                            `<span class="text-${item}">text-${item}</span>`
+                                            `<span className="text-${item}">text-${item}</span>`
                                         )}
                                     </TableCell>
                                 </TableRow>

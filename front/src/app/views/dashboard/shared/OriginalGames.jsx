@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Card, Icon, IconButton, Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import useWindowDimensions from 'app/hooks/useWindowDimensions'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     icon: {
@@ -26,16 +27,53 @@ const OriginalGames = () => {
         { src: '11.png' },
         { src: '12.png' },
     ]
-
+    const { height, width } = useWindowDimensions()
+    const [grids, setGrids] = React.useState(6)
+    // React.useEffect(() => {
+    //     if (width > 1024) setGrids(6)
+    //     else if (width <= 1024 && width > 512) setGrids(4)
+    //     else if (width <= 512) setGrids(2)
+    // }, [width])
     return (
         <Grid container spacing={1} className="mb-3">
             {imgItems.map((item, index) => (
-                <Grid item xs={12} md={2} key={index}>
-                    <img
-                        className="game-types-img"
-                        src={'/assets/images/original-games/' + item.src}
-                    />
-                </Grid>
+                <div
+                    style={{
+                        maxWidth: `${100 / grids}%`,
+                        flexBasis: `${100 / grids}%`,
+                        padding: '.3rem',
+                    }}
+                    key={index}
+                >
+                    <div class="tag-wrap">
+                        <div class="tag recommend">Top</div>
+                    </div>
+                    <a num="1" class="game-panel" href="/classic-dice">
+                        <div class="lazy-img img">
+                            <img
+                                className="game-types-img"
+                                src={
+                                    '/assets/images/original-games/' + item.src
+                                }
+                            />
+                        </div>
+                        <div class="hover-mask">
+                            <div class="house-edge">House Edge 1%</div>
+                            <img
+                                className="game-types-img play-icon"
+                                src={'/assets/images/other/play.svg'}
+                            />
+                        </div>
+                    </a>
+                    <div class="game-desc">
+                        <div class="game-name">Classic Dice</div>
+                        <div class="help-btn-wrap">
+                            <button>
+                                <Icon>help_outline</Icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             ))}
         </Grid>
     )
