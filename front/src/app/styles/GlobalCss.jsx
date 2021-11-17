@@ -12,6 +12,7 @@ import { commonStyles } from './utilities/_common'
 import { animationStyles } from './utilities/_animations'
 import { settingsStyle } from "./utilities/_settings";
 import { dashboardStyle } from "./utilities/_dashboard";
+import { footerStyle } from "./utilities/_footer";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -26,6 +27,7 @@ const GlobalCss = ({ children }) => {
     animationStyles()
     settingsStyle();
     dashboardStyle();
+    footerStyle();
 
     return children || null
 }

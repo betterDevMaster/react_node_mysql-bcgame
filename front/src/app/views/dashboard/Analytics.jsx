@@ -4,6 +4,7 @@ import DoughnutChart from './shared/Doughnut'
 import GameTypes from './shared/GameTypes'
 import OriginalGames from './shared/OriginalGames'
 import Winners from './shared/Winners'
+import Lateset from './shared/Lateset'
 import TopSellingTable from './shared/TopSellingTable'
 import RowCards from './shared/RowCards'
 import StatCards2 from './shared/StatCards2'
@@ -64,6 +65,7 @@ const Analytics = () => {
                 <OriginalGames />
                 <h4 className="card-title text-muted mb-4">Biggest Winners today</h4>
                 <Winners />
+                <Lateset />
                 {/* <Grid container spacing={3}>
                     <Grid item lg={8} md={8} sm={12} xs={12}>
 
