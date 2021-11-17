@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button, Icon } from '@material-ui/core'
-import ZoomIn from '@material-ui/icons/ZoomIn'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import AvatarEditor from 'react-avatar-editor'
+import { Card, Button, Icon } from '@material-ui/core'
+import ZoomIn from '@material-ui/icons/ZoomIn'
 import { SimpleCard } from 'app/components'
 
 const ProfileSetting = ({ user, update }) => {

@@ -1,18 +1,12 @@
 import React, { Fragment } from 'react'
-import { Grid, Card } from '@material-ui/core'
-import DoughnutChart from './shared/Doughnut'
+import AliceCarousel from 'react-alice-carousel'
+import { useTheme } from '@material-ui/styles'
+
 import GameTypes from './shared/GameTypes'
 import OriginalGames from './shared/OriginalGames'
 import Winners from './shared/Winners'
 import Lateset from './shared/Lateset'
-import TopSellingTable from './shared/TopSellingTable'
-import RowCards from './shared/RowCards'
-import StatCards2 from './shared/StatCards2'
-import UpgradeCard from './shared/UpgradeCard'
-import Campaigns from './shared/Campaigns'
-import { useTheme } from '@material-ui/styles'
 
-import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 
 const Analytics = () => {

@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import { Grid } from '@material-ui/core'
+import { useTheme } from '@material-ui/styles'
+import useAuth from 'app/hooks/useAuth'
 import StatCards from './shared/StatCards'
 import ProfileSetting from './shared/ProfileSetting'
 import GeneralSetting from './shared/GeneralSetting'
 import PrivacySetting from './shared/PrivacySetting'
 import SecuritySetting from './shared/SecuritySetting'
-import { useTheme } from '@material-ui/styles'
-import useAuth from 'app/hooks/useAuth'
 
 const Analytics = () => {
     const theme = useTheme()

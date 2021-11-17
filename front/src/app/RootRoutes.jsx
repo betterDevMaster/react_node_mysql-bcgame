@@ -3,14 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import dashboardRoutes from './views/dashboard/DashboardRoutes'
 import profileRoutes from './views/profile/ProfileRoutes'
-import utilitiesRoutes from './views/utilities/UtilitiesRoutes'
-
-import materialRoutes from './views/material-kit/MaterialRoutes'
-import chartsRoute from './views/charts/ChartsRoute'
-import dragAndDropRoute from './views/Drag&Drop/DragAndDropRoute'
-
-import formsRoutes from './views/forms/FormsRoutes'
-import mapRoutes from './views/map/MapRoutes'
+import userRoutes from './views/user/UserRoutes'
 
 
 const redirectRoute = [
@@ -30,12 +23,7 @@ const errorRoute = [
 const routes = [
     ...dashboardRoutes,
     ...profileRoutes,
-    ...materialRoutes,
-    ...utilitiesRoutes,
-    ...chartsRoute,
-    ...dragAndDropRoute,
-    ...formsRoutes,
-    ...mapRoutes,
+    ...userRoutes,
     ...redirectRoute,
     ...errorRoute,
 ]

@@ -14,6 +14,7 @@ app.use(cors());
 // api routes
 app.use('/users', require('./users/users.controller'));
 app.use('/socials', require('./socialAuth/social.controller'));
+app.use('/games', require('./games/games.controller'));
 
 // global error handler
 app.use(errorHandler);

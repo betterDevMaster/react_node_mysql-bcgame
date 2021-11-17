@@ -35,7 +35,7 @@ const Footer = () => {
 
     const currencies = currenciesLength.map((item, index) => {
         return (
-            <div className="currency-item">
+            <div className="currency-item" key={index}>
                 <img src={'/assets/images/coins/' + (index + 1) + '.svg'} />
             </div>
         )

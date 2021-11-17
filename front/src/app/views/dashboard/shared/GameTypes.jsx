@@ -1,8 +1,8 @@
 import React from 'react'
-import { Grid, Card, Icon, IconButton, Tooltip } from '@material-ui/core'
+import AliceCarousel from 'react-alice-carousel'
+import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import useWindowDimensions from 'app/hooks/useWindowDimensions'
-import AliceCarousel from 'react-alice-carousel'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     icon: {

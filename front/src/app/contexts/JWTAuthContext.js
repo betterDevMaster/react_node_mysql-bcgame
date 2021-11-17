@@ -84,8 +84,8 @@ export const AuthProvider = ({ children }) => {
             email: userEmail,
             password,
         })
-        const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
-        const user = { firstName, id, lastName, name, email, profilePicURL, createdAt, updatedAt }
+        const { token, id, firstName, lastName, email, name, profilePicURL, role, createdAt, updatedAt } = response.data
+        const user = { firstName, id, lastName, name, email, profilePicURL, role, createdAt, updatedAt }
 
         setSession(token, email)
         dispatch({
@@ -126,8 +126,8 @@ export const AuthProvider = ({ children }) => {
 
     const socialLogin = async (socialUser) => {
         const response = await axios.post('/socials/register', socialUser)
-        const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
-        const user = { firstName, id, lastName, name, email, profilePicURL, createdAt, updatedAt }
+        const { token, id, firstName, lastName, email, name, profilePicURL, role, createdAt, updatedAt } = response.data
+        const user = { firstName, id, lastName, name, email, profilePicURL, role, createdAt, updatedAt }
         setSession(token, email)
         dispatch({
             type: 'LOGIN',
@@ -150,8 +150,8 @@ export const AuthProvider = ({ children }) => {
                 if (token && isValidToken(token)) {
                     const config = { responseType: 'blob' };
                     const response = await axios.post('/users/profile', { email: userEmail }, config)
-                    const { token, id, firstName, lastName, email, name, profilePicURL, createdAt, updatedAt } = response.data
-                    const user = { id, firstName, lastName, name, email, profilePicURL, createdAt, updatedAt }
+                    const { token, id, firstName, lastName, email, name, profilePicURL, role, createdAt, updatedAt } = response.data
+                    const user = { id, firstName, lastName, name, email, profilePicURL, role, createdAt, updatedAt }
                     setSession(token, email)
                     dispatch({
                         type: 'INIT',

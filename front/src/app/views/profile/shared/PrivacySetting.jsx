@@ -1,8 +1,7 @@
 import React from 'react'
-import { SimpleCard, MatxDivider, MatxProgressBar } from 'app/components'
+import { SimpleCard, MatxDivider } from 'app/components'
 import { withStyles } from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch'
-import MaxHeightMenu from '../../material-kit/menu/MaxHeightMenu'
 
 const IOSSwitch = withStyles((theme) => ({
     root: {
@@ -116,7 +115,9 @@ const PrivacySetting = () => {
                 </div>
                 <MatxDivider />
                 <div className="flex justify-between items-center">
-                    <h6 className="text-muted">Allow private messages from strangers</h6>
+                    <h6 className="text-muted">
+                        Allow private messages from strangers
+                    </h6>
                     <IOSSwitch
                         checked={state.checkedC}
                         onChange={handleChange('checkedC')}
@@ -125,7 +126,9 @@ const PrivacySetting = () => {
                 </div>
                 <MatxDivider />
                 <div className="flex justify-between items-center">
-                    <h6 className="text-muted">Refuse any new friend request</h6>
+                    <h6 className="text-muted">
+                        Refuse any new friend request
+                    </h6>
                     <IOSSwitch
                         checked={state.checkedC}
                         onChange={handleChange('checkedC')}

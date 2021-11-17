@@ -17,7 +17,6 @@ import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
-import ProfileDialog from 'app/views/material-kit/dialog/ProfileDialog'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     topbar: {
@@ -103,10 +102,6 @@ const Layout1Topbar = () => {
         setMenuSetting({ ...menuSetting, profile: true })
     }
 
-    const handleProfileDialogClose = (status) => {
-        setMenuSetting({ ...menuSetting, profile: status })
-    }
-
     return (
         <div className={classes.topbar}>
             <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
@@ -187,7 +182,6 @@ const Layout1Topbar = () => {
                     </div>
                 </div>
             </div>
-            <ProfileDialog status={menuSetting.profile} onclosehandler={handleProfileDialogClose}/>
         </div>
     )
 }

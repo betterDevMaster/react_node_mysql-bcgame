@@ -15,7 +15,7 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import useAuth from 'app/hooks/useAuth'
 import history from 'history.js'
-// import SocialButton from 'app/views/utilities/SocialButton'
+// import SocialButton from '../SocialButton'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {

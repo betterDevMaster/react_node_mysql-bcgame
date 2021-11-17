@@ -1,8 +1,8 @@
 import React from 'react'
-import { SimpleCard, MatxDivider, MatxProgressBar } from 'app/components'
+import { SimpleCard, MatxDivider } from 'app/components'
 import { withStyles } from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch'
-import MaxHeightMenu from '../../material-kit/menu/MaxHeightMenu'
+import MaxHeightMenu from './MaxHeightMenu'
 
 const IOSSwitch = withStyles((theme) => ({
     root: {

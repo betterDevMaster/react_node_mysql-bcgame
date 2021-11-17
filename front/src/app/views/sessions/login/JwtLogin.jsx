@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
-import SocialButton from 'app/views/utilities/SocialButton'
+import SocialButton from '../SocialButton'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {

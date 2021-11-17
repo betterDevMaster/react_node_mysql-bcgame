@@ -20,8 +20,8 @@ module.exports = router;
 
 function authenticateSchema(req, res, next) {
     const schema = Joi.object({
-        email: Joi.string().required(),
-        password: Joi.string().required()
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+        password: Joi.string().min(6).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
     });
     validateRequest(req, next, schema);
 }
@@ -34,7 +34,7 @@ function authenticate(req, res, next) {
 
 function emailSchema(req, res, next) {
     const schema = Joi.object({
-        email: Joi.string().required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
     });
     validateRequest(req, next, schema);
 }
@@ -53,18 +53,18 @@ function profie(req, res, next) {
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        name: Joi.string().required(),
-        email: Joi.string().required(),
-        password: Joi.string().min(6).required()
+        firstName: Joi.string().alphanum().min(3).max(30).required(),
+        lastName: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().alphanum().min(3).max(30).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+        password: Joi.string().min(6).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
     });
     validateRequest(req, next, schema);
 }
 
 function register(req, res, next) {
     userService.create(req.body)
-        .then(() => res.json({ status: 'success', message: 'Registration successful' }))
+        .then(() => res.json({ status: 'success', message: 'User registration successful' }))
         .catch(next);
 }
 

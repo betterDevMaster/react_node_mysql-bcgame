@@ -1,7 +1,7 @@
 import React from 'react'
 import { authRoles } from '../../auth/authRoles'
 
-const dashboardRoutes = [
+const   profileRoutes = [
     {
         path: '/profile',
         component: React.lazy(() => import('./Analytics')),
@@ -9,4 +9,4 @@ const dashboardRoutes = [
     }
 ]
 
-export default dashboardRoutes
+export default profileRoutes

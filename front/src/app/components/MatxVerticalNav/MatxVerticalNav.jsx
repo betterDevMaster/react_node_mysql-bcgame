@@ -44,7 +44,7 @@ const MatxVerticalNav = ({ items }) => {
     const { settings } = useSettings()
     const { mode } = settings.layout1Settings.leftSidebar
     const classes = useStyles()
-
+console.log('items ---------', items)
     const renderLevels = (data) => {
         return data.map((item, index) => {
             if (item.type === 'label')
