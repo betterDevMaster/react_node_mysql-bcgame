@@ -3,6 +3,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import MuiPhoneNumber from 'material-ui-phone-number'
 import AvatarEditor from 'react-avatar-editor'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import {
     Button,
     Icon,
@@ -13,12 +14,20 @@ import {
     Snackbar,
 } from '@material-ui/core'
 import { SimpleCard, MatxSnackbar } from 'app/components'
-import { registerUserByAdmin } from '../../redux/actions/UserActions'
+import {
+    getUserByAdmin,
+    registerUserByAdmin,
+    updateUserByAdmin,
+} from '../../redux/actions/UserActions'
 
 const Register = () => {
     var editor = ''
+    const dispatch = useDispatch()
+    const userReducer = useSelector(({ user }) => user)
+    const [snackbarOpen, setSnackbarOpen] = useState(false)
+    const search = useLocation().search
+    const userId = search ? new URLSearchParams(search).get('id') : null
     const [state, setState] = useState({
-        image: '',
         allowZoomOut: false,
         position: { x: 0.5, y: 0.5 },
         scale: 1,
@@ -30,11 +39,21 @@ const Register = () => {
         height: 260,
         color: [255, 255, 255, 0.6],
         role: 'GUEST',
+        image: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        mobile: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
     })
-    const dispatch = useDispatch()
-    const user = useSelector(({ user }) => user)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
 
+    useEffect(() => {
+        if (userId) {
+            dispatch(getUserByAdmin(userId))
+        }
+    }, [])
     useEffect(() => {
         ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
             if (value !== state.password) {
@@ -45,8 +64,21 @@ const Register = () => {
         return () => ValidatorForm.removeValidationRule('isPasswordMatch')
     }, [state.password])
     useEffect(() => {
-        if (user.message && user.message !== '') setSnackbarOpen(true)
-    }, [user])
+        if (userReducer.message && userReducer.message !== '')
+            setSnackbarOpen(true)
+
+        if (Array.isArray(userReducer.data) && userReducer.data.length > 0)
+            setState({
+                ...state,
+                role: userReducer.data[0].role,
+                image: userReducer.data[0].profilePicURL,
+                username: userReducer.data[0].name,
+                firstName: userReducer.data[0].firstName,
+                lastName: userReducer.data[0].lastName,
+                mobile: userReducer.data[0].mobile,
+                email: userReducer.data[0].email,
+            })
+    }, [userReducer])
 
     const handleSubmit = (event) => {
         if (setEditorRef) {
@@ -63,7 +95,8 @@ const Register = () => {
                 role: state.role,
                 profilePicURL: croppedImg,
             }
-            dispatch(registerUserByAdmin(user))
+            if (userId) dispatch(updateUserByAdmin(userId, user))
+            else dispatch(registerUserByAdmin(user))
         }
     }
     const handleChange = (event) => {
@@ -74,6 +107,7 @@ const Register = () => {
         })
     }
     const handlePhoneNumberChange = (number) => {
+        console.log('number ------', number)
         setState({ ...state, mobile: number })
     }
     const setEditorRef = (ed) => {
@@ -85,16 +119,6 @@ const Register = () => {
     const handleSnackbarClose = (e) => {
         setSnackbarOpen(false)
     }
-    const {
-        username,
-        firstName,
-        lastName,
-        mobile,
-        password,
-        confirmPassword,
-        role,
-        email,
-    } = state
 
     return (
         <div className="m-sm-30">
@@ -108,7 +132,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 type="text"
                                 name="username"
-                                value={username || ''}
+                                value={state.username}
                                 validators={[
                                     'required',
                                     'minStringLength: 3',
@@ -122,7 +146,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 type="text"
                                 name="firstName"
-                                value={firstName || ''}
+                                value={state.firstName}
                                 validators={['required']}
                                 errorMessages={['this field is required']}
                             />
@@ -132,7 +156,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 type="text"
                                 name="lastName"
-                                value={lastName || ''}
+                                value={state.lastName}
                                 validators={['required']}
                                 errorMessages={['this field is required']}
                             />
@@ -142,7 +166,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 type="email"
                                 name="email"
-                                value={email || ''}
+                                value={state.email}
                                 validators={['required', 'isEmail']}
                                 errorMessages={[
                                     'this field is required',
@@ -155,7 +179,7 @@ const Register = () => {
                                 inputClass="mb-4 w-full"
                                 label="Mobile Nubmer"
                                 name="mobile"
-                                value={mobile || ''}
+                                value={state.mobile}
                             />
                             <TextValidator
                                 className="mb-4 w-full"
@@ -163,7 +187,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 name="password"
                                 type="password"
-                                value={password || ''}
+                                value={state.password}
                                 validators={['required', 'minStringLength: 6']}
                                 errorMessages={[
                                     'this field is required',
@@ -176,7 +200,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 name="confirmPassword"
                                 type="password"
-                                value={confirmPassword || ''}
+                                value={state.confirmPassword}
                                 validators={['required', 'isPasswordMatch']}
                                 errorMessages={[
                                     'this field is required',
@@ -185,7 +209,7 @@ const Register = () => {
                             />
                             <RadioGroup
                                 className="mb-4"
-                                value={role || ''}
+                                value={state.role}
                                 name="role"
                                 onChange={handleChange}
                                 aria-label="Role"
@@ -266,11 +290,13 @@ const Register = () => {
                 <MatxSnackbar
                     onClose={handleSnackbarClose}
                     variant={
-                        user.message && user.message !== '' && user.status
+                        userReducer.message &&
+                        userReducer.message !== '' &&
+                        userReducer.status
                             ? 'success'
                             : 'error'
                     }
-                    message={user.message}
+                    message={userReducer.message}
                 />
             </Snackbar>
         </div>

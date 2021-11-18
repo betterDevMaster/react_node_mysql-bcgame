@@ -11,7 +11,7 @@ export const getUsersByAdmin = () => (dispatch) => {
     axios.get('/users/').then((res) => {
         dispatch({
             type: GET_ALL_USERS,
-            payload: res.data,
+            data: res.data,
         })
     })
 }
@@ -20,16 +20,17 @@ export const getUserByAdmin = (id) => (dispatch) => {
     axios.get('/users/' + id).then((res) => {
         dispatch({
             type: GET_USER,
-            payload: res.data,
+            data: res.data,
         })
     })
 }
 
 export const updateUserByAdmin = (id, user) => (dispatch) => {
-    axios.put('/users/' + id, { user }).then((res) => {
+    axios.put('/users/' + id, user).then((res) => {
         dispatch({
             type: UPDATE_USER,
-            payload: res.data,
+            status: res.data.status,
+            message: res.data.message,
         })
     })
 }
@@ -38,7 +39,8 @@ export const deleteUserByAdmin = (id) => (dispatch) => {
     axios.delete('/users/' + id).then((res) => {
         dispatch({
             type: DELETE_USER,
-            payload: res.data,
+            status: res.data.status,
+            message: res.data.message,
         })
     })
 }

@@ -29,7 +29,7 @@ function registerSchema(req, res, next) {
 
 function register(req, res, next) {
     gameService.create(req.body)
-        .then(() => res.json({ status: 'success', message: 'Game registration successful' }))
+        .then(() => res.json({ status: 'success', message: 'Game registered successfully' }))
         .catch(next);
 }
 
