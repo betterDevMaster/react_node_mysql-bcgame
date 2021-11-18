@@ -21,7 +21,6 @@ const AuthGuard = ({ children }) => {
     const { pathname } = useLocation()
 
     const { routes } = useContext(AppContext)
-    console.log('user ------', user)
     const isUserRoleAuthenticated = getUserRoleAuthStatus(
         pathname,
         user,

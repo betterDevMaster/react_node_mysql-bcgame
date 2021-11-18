@@ -65,7 +65,7 @@ const JwtRegister = () => {
                 state.name,
                 state.password
             )
-            if (res.status === 'success') history.push('/signin')
+            if (res.status) history.push('/signin')
         } catch (e) {
             setMessage(e.message)
             setLoading(false)
@@ -176,8 +176,14 @@ const JwtRegister = () => {
                                     name="password"
                                     type="password"
                                     value={password || ''}
-                                    validators={['required']}
-                                    errorMessages={['this field is required']}
+                                    validators={[
+                                        'required',
+                                        'minStringLength: 6',
+                                    ]}
+                                    errorMessages={[
+                                        'this field is required',
+                                        'password must be at least 6 digits',
+                                    ]}
                                 />
                                 <TextValidator
                                     className="mb-4 w-full"

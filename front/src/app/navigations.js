@@ -16,10 +16,12 @@ export const navigations = [
     {
         label: 'Admin Section',
         type: 'label',
+        auth: authRoles.admin,
     },
     {
         name: 'User Manage',
         icon: 'people',
+        auth: authRoles.admin,
         children: [
             {
                 name: 'User Register',

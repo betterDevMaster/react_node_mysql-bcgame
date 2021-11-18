@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react'
 import jwtDecode from 'jwt-decode'
-import axios from 'axios.js'
+import axios from 'app/services/apiAxiosService.js'
 import { MatxLoading } from 'app/components'
 
 const initialState = {
@@ -148,8 +148,7 @@ export const AuthProvider = ({ children }) => {
                 const token = window.localStorage.getItem('token')
                 const userEmail = window.localStorage.getItem('email')
                 if (token && isValidToken(token)) {
-                    const config = { responseType: 'blob' };
-                    const response = await axios.post('/users/profile', { email: userEmail }, config)
+                    const response = await axios.post('/users/profile', { email: userEmail })
                     const { token, id, firstName, lastName, email, name, profilePicURL, role, createdAt, updatedAt } = response.data
                     const user = { id, firstName, lastName, name, email, profilePicURL, role, createdAt, updatedAt }
                     setSession(token, email)

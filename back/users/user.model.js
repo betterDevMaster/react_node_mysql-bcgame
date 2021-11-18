@@ -9,8 +9,9 @@ function model(sequelize) {
         name: { type: DataTypes.STRING, allowNull: false },
         email: { type: DataTypes.STRING, allowNull: false, unique: true },
         hash: { type: DataTypes.STRING, allowNull: false },
-        profilePicURL: { type: DataTypes.TEXT('long'), allowNull: false },
+        profilePicURL: { type: DataTypes.TEXT('long'), allowNull: true },
         social: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0 },
+        mobile: { type: DataTypes.STRING, allowNull: true },
         role: { type: DataTypes.STRING, allowNull: false, defaultValue: 'GUEST' },
     };
 

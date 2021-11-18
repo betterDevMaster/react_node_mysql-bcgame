@@ -9,6 +9,7 @@ const userService = require('./user.service');
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/profile', emailSchema, profie);
 router.post('/register', registerSchema, register);
+router.post('/registerByAdmin', authorize(), registerAdminSchema, register);
 router.post('/forgotPassword', emailSchema, forgotPassword);
 router.get('/', authorize(), getAll);
 router.get('/current', authorize(), getCurrent);
@@ -62,9 +63,22 @@ function registerSchema(req, res, next) {
     validateRequest(req, next, schema);
 }
 
+function registerAdminSchema(req, res, next) {
+    const schema = Joi.object({
+        firstName: Joi.string().alphanum().min(3).max(30).required(),
+        lastName: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().alphanum().min(3).max(30).required(),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+        mobile: Joi.string().min(3).max(30).required(),
+        profilePicURL: Joi.string(),
+        password: Joi.string().min(6).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+    });
+    validateRequest(req, next, schema);
+}
+
 function register(req, res, next) {
     userService.create(req.body)
-        .then(() => res.json({ status: 'success', message: 'User registration successful' }))
+        .then(() => res.json({ status: true, message: 'User successfully registered' }))
         .catch(next);
 }
 

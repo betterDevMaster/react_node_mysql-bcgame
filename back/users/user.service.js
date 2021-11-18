@@ -64,10 +64,9 @@ async function create(params) {
     if (params.password) {
         params.hash = await bcrypt.hash(params.password, 10);
     }
-    if (!params.hasOwnProperty("profilePicURL"))
-        params.profilePicURL = ''
+
     // save user
-    const result = await db.User.create(params);
+    await db.User.create(params);
 }
 
 async function update(id, params) {
