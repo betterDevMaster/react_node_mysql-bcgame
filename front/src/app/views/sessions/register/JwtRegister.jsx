@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import useAuth from 'app/hooks/useAuth'
-import history from 'history.js'
+import history from 'app/services/historyService'
 // import SocialButton from '../SocialButton'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({

@@ -20,7 +20,7 @@ import {
     deleteUserByAdmin,
 } from '../../redux/actions/UserActions'
 import useWindowDimensions from 'app/hooks/useWindowDimensions'
-import history from 'history.js'
+import history from 'app/services/historyService'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     userTable: {
@@ -109,7 +109,10 @@ const List = () => {
                             <TableBody>
                                 {userReducer.data.map(
                                     (user, index) =>
-                                        user.role !== 'SA' && (
+                                        !(
+                                            user.role === 'SA' ||
+                                            user.role === 'GUEST'
+                                        ) && (
                                             <TableRow key={index} hover>
                                                 <TableCell
                                                     className="px-0 capitalize"
@@ -137,7 +140,7 @@ const List = () => {
                                                     {user.name}
                                                 </TableCell> */}
                                                 <TableCell
-                                                    className="px-0 capitalize"
+                                                    className="px-0"
                                                     align="left"
                                                     colSpan={3}
                                                 >
@@ -155,13 +158,21 @@ const List = () => {
                                                     align="left"
                                                     colSpan={1}
                                                 >
-                                                    <small
+                                                    {/* <small
                                                         className={`border-radius-4 text-white px-2 py-2px ${
                                                             user.role ===
                                                             'GUEST'
                                                                 ? 'bg-secondary'
                                                                 : user.role ===
                                                                   'EDITOR'
+                                                                ? 'bg-green'
+                                                                : 'bg-primary'
+                                                        }`}
+                                                    > */}
+                                                    <small
+                                                        className={`border-radius-4 text-white px-2 py-2px ${
+                                                            user.role ===
+                                                            'EDITOR'
                                                                 ? 'bg-green'
                                                                 : 'bg-primary'
                                                         }`}

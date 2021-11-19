@@ -14,17 +14,17 @@ export const navigations = [
         auth: authRoles.guest,
     },
     {
-        label: 'Admin Section',
+        label: 'Admin Pages',
         type: 'label',
         auth: authRoles.admin,
     },
     {
         name: 'User Manage',
-        icon: 'people',
+        icon: 'person',
         auth: authRoles.admin,
         children: [
             {
-                name: 'User Register',
+                name: 'User Registration',
                 path: '/user/register',
                 icon: 'person_add',
                 auth: authRoles.admin,
@@ -32,8 +32,32 @@ export const navigations = [
             {
                 name: 'Users List',
                 path: '/user/list',
-                icon: 'person',
+                icon: 'people',
                 auth: authRoles.admin,
+            },
+        ],
+    },
+    {
+        label: 'Editor Pages',
+        type: 'label',
+        auth: authRoles.admin,
+    },
+    {
+        name: 'Game Manage',
+        icon: 'videogame_asset',
+        auth: authRoles.editor,
+        children: [
+            {
+                name: 'Gamer Registration',
+                path: '/game/register',
+                icon: 'playlist_add',
+                auth: authRoles.editor,
+            },
+            {
+                name: 'Games List',
+                path: '/game/list',
+                icon: 'playlist_add_check',
+                auth: authRoles.editor,
             },
         ],
     },

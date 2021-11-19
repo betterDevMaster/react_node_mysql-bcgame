@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
 import { makeStyles } from '@material-ui/core/styles'
-import history from 'history.js'
+import history from 'app/services/historyService'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import SocialButton from '../SocialButton'
