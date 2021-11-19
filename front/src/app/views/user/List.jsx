@@ -75,7 +75,7 @@ const List = () => {
 
     return (
         <div className="m-sm-30">
-            <SimpleCard title="Registration">
+            <SimpleCard title="Admin User List">
                 <Card elevation={3} className="pt-5 mb-6">
                     <div className="overflow-auto">
                         <Table

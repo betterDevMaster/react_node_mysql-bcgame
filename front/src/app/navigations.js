@@ -45,21 +45,8 @@ export const navigations = [
     {
         name: 'Game Manage',
         icon: 'videogame_asset',
+        path: '/game/list',
         auth: authRoles.editor,
-        children: [
-            {
-                name: 'Gamer Registration',
-                path: '/game/register',
-                icon: 'playlist_add',
-                auth: authRoles.editor,
-            },
-            {
-                name: 'Games List',
-                path: '/game/list',
-                icon: 'playlist_add_check',
-                auth: authRoles.editor,
-            },
-        ],
     },
     // {
     //     name: 'Documentation',

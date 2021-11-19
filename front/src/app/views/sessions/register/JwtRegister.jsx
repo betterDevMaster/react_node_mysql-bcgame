@@ -150,8 +150,14 @@ const JwtRegister = () => {
                                     type="text"
                                     name="name"
                                     value={name || ''}
-                                    validators={['required']}
-                                    errorMessages={['this field is required']}
+                                    validators={[
+                                        'required',
+                                        'minStringLength: 3',
+                                    ]}
+                                    errorMessages={[
+                                        'this field is required',
+                                        'password must be at least 3 digits',
+                                    ]}
                                 />
                                 <TextValidator
                                     className="mb-6 w-full"
