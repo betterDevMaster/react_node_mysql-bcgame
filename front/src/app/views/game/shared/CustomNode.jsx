@@ -37,12 +37,17 @@ export const CustomNode = (props) => {
                     </div>
                 )}
             </div>
-            <div>
+            <div className={styles.labelGridItem}>
                 <TypeIcon droppable={droppable} fileType={data?.fileType} />
             </div>
             <div className={styles.labelGridItem}>
                 <Typography variant="body2">{props.node.text}</Typography>
             </div>
+            <div className={styles.labelGridItem}>gametype</div>
+            <a className={styles.labelGridItem}>gameurl</a>
+            <div className={styles.labelGridItem}>gameimage</div>
+            <div className={styles.labelGridItem}>suportedplaytype</div>
+            <div className={styles.labelGridItem}>playtype</div>
             {hover && (
                 <>
                     <div className={styles.actionButton}>
@@ -53,14 +58,14 @@ export const CustomNode = (props) => {
                             <Delete fontSize="small" />
                         </IconButton>
                     </div>
-                    <div className={styles.actionButton}>
+                    {/* <div className={styles.actionButton}>
                         <IconButton
                             size="small"
                             onClick={() => props.onCopy(id)}
                         >
                             <FileCopy fontSize="small" />
                         </IconButton>
-                    </div>
+                    </div> */}
                 </>
             )}
         </div>

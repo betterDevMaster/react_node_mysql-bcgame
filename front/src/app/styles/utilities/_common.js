@@ -64,19 +64,31 @@ export const commonStyles = makeStyles(({ palette, ...theme }) => ({
                 height: '5px',
                 backgroundColor: 'transparent',
                 borderRadius: '5px',
-            }
+            },
         },
         '@media screen and (min-width: 621px)': {
             '::-webkit-scrollbar-button': {
                 display: 'none',
-            }
+            },
         },
         '@media screen and (min-width: 621px)': {
             '::-webkit-scrollbar-thumb': {
-                backgroundColor: 'rgb(36, 38, 43)',
+                backgroundColor: 'rgb(109 114 124)',
                 transition: 'all 0.5s ease 0s',
                 borderRadius: '5px',
-            }
+            },
+        },
+        '*::-webkit-scrollbar': {
+            width: '0.4em',
+        },
+        '*::-webkit-scrollbar-track': {
+            '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
+        },
+        '*::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgb(109 114 124)',
+            transition: 'all 0.5s ease 0s',
+            borderRadius: '5px',
+            outline: '1px solid slategrey',
         },
     },
 }))

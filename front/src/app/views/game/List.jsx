@@ -6,8 +6,9 @@ import {
 } from '@minoru/react-dnd-treeview'
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseLine from '@material-ui/core/CssBaseline'
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
+import SaveIcon from '@material-ui/icons/Save'
 import { CustomNode } from './shared/CustomNode'
 import { CustomDragPreview } from './shared/CustomDragPreview'
 import { AddDialog } from './shared/AddDialog'
@@ -49,25 +50,25 @@ function List() {
         setTreeData(newTree)
     }
 
-    const handleCopy = (id) => {
-        const lastId = getLastId(treeData)
-        const targetNode = treeData.find((n) => n.id === id)
-        const descendants = getDescendants(treeData, id)
-        const partialTree = descendants.map((node) => ({
-            ...node,
-            id: node.id + lastId,
-            parent: node.parent + lastId,
-        }))
+    // const handleCopy = (id) => {
+    //     const lastId = getLastId(treeData)
+    //     const targetNode = treeData.find((n) => n.id === id)
+    //     const descendants = getDescendants(treeData, id)
+    //     const partialTree = descendants.map((node) => ({
+    //         ...node,
+    //         id: node.id + lastId,
+    //         parent: node.parent + lastId,
+    //     }))
 
-        setTreeData([
-            ...treeData,
-            {
-                ...targetNode,
-                id: targetNode.id + lastId,
-            },
-            ...partialTree,
-        ])
-    }
+    //     setTreeData([
+    //         ...treeData,
+    //         {
+    //             ...targetNode,
+    //             id: targetNode.id + lastId,
+    //         },
+    //         ...partialTree,
+    //     ])
+    // }
 
     const handleOpenDialog = () => {
         setOpen(true)
@@ -79,7 +80,6 @@ function List() {
 
     const handleSubmit = (newNode) => {
         const lastId = getLastId(treeData) + 1
-
         setTreeData([
             ...treeData,
             {
@@ -87,8 +87,11 @@ function List() {
                 id: lastId,
             },
         ])
-
         setOpen(false)
+    }
+
+    const handleSaveChanges = () => {
+        console.log('handleSaveChanges')
     }
 
     return (
@@ -98,12 +101,22 @@ function List() {
                     <ThemeProvider theme={theme}>
                         <CssBaseLine />
                         <div className={styles.app}>
-                            <div>
+                            <div className='flex justify-between mb-2'>
                                 <Button
                                     onClick={handleOpenDialog}
                                     startIcon={<AddIcon />}
+                                    color="primary"
+                                    variant="contained"
                                 >
                                     Add Node
+                                </Button>
+                                <Button
+                                    onClick={handleSaveChanges}
+                                    startIcon={<SaveIcon />}
+                                    color="secondary"
+                                    variant="contained"
+                                >
+                                    Save
                                 </Button>
                                 {open && (
                                     <AddDialog
@@ -121,7 +134,7 @@ function List() {
                                         node={node}
                                         {...options}
                                         onDelete={handleDelete}
-                                        onCopy={handleCopy}
+                                        // onCopy={handleCopy}
                                     />
                                 )}
                                 dragPreviewRender={(monitorProps) => (
