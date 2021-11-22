@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-import { ArrowRight, Delete, FileCopy } from '@material-ui/icons'
+import { ArrowRight, Delete, Edit } from '@material-ui/icons'
 import { useDragOver } from '@minoru/react-dnd-treeview'
 import { TypeIcon } from './TypeIcon'
 import styles from '../style/CustomNode.module.css'
@@ -23,33 +23,38 @@ export const CustomNode = (props) => {
             className={`tree-node ${styles.root}`}
             style={{ paddingInlineStart: indent }}
             {...dragOverProps}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            onMouseEnter={() => props.node.id > 3 && setHover(true)}
+            onMouseLeave={() => props.node.id > 3 && setHover(false)}
         >
-            <div
-                className={`${styles.expandIconWrapper} ${
-                    props.isOpen ? styles.isOpen : ''
-                }`}
-            >
-                {props.node.droppable && (
-                    <div onClick={handleToggle}>
-                        <ArrowRight />
-                    </div>
-                )}
+            <div className="flex">
+                <div
+                    className={`${styles.expandIconWrapper} ${
+                        props.isOpen ? styles.isOpen : ''
+                    }`}
+                >
+                    {props.node.droppable && (
+                        <div onClick={handleToggle}>
+                            <ArrowRight />
+                        </div>
+                    )}
+                </div>
+                <div className={styles.labelGridItem}>
+                    <TypeIcon droppable={droppable} />
+                </div>
+                <div className={styles.labelGridItem}>
+                    <Typography variant="body2">{props.node.name}</Typography>
+                </div>
             </div>
-            <div className={styles.labelGridItem}>
-                <TypeIcon droppable={droppable} fileType={data?.fileType} />
-            </div>
-            <div className={styles.labelGridItem}>
-                <Typography variant="body2">{props.node.text}</Typography>
-            </div>
-            <div className={styles.labelGridItem}>gametype</div>
-            <a className={styles.labelGridItem}>gameurl</a>
-            <div className={styles.labelGridItem}>gameimage</div>
-            <div className={styles.labelGridItem}>suportedplaytype</div>
-            <div className={styles.labelGridItem}>playtype</div>
             {hover && (
-                <>
+                <div className="flex">
+                    <div className={styles.actionButton}>
+                        <IconButton
+                            size="small"
+                            onClick={() => props.onEdit(id)}
+                        >
+                            <Edit fontSize="small" />
+                        </IconButton>
+                    </div>
                     <div className={styles.actionButton}>
                         <IconButton
                             size="small"
@@ -58,15 +63,7 @@ export const CustomNode = (props) => {
                             <Delete fontSize="small" />
                         </IconButton>
                     </div>
-                    {/* <div className={styles.actionButton}>
-                        <IconButton
-                            size="small"
-                            onClick={() => props.onCopy(id)}
-                        >
-                            <FileCopy fontSize="small" />
-                        </IconButton>
-                    </div> */}
-                </>
+                </div>
             )}
         </div>
     )

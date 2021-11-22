@@ -14,7 +14,7 @@ router.post('/forgotPassword', emailSchema, forgotPassword);
 router.get('/', authorize(), getAll);
 router.get('/current', authorize(), getCurrent);
 router.get('/:id', authorize(), getById);
-router.put('/:id', authorize(), adminSchema, update);
+router.put('/:id', authorize(), updateSchema, update);
 router.delete('/:id', authorize(), _delete);
 
 module.exports = router;
@@ -59,6 +59,14 @@ function registerSchema(req, res, next) {
         name: Joi.string().alphanum().min(3).max(30).required(),
         email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
         password: Joi.string().min(6).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+    });
+    validateRequest(req, next, schema);
+}
+
+function updateSchema(req, res, next) {
+    const schema = Joi.object({
+        name: Joi.string().alphanum().min(3).max(30).required(),
+        profilePicURL: Joi.string(),
     });
     validateRequest(req, next, schema);
 }

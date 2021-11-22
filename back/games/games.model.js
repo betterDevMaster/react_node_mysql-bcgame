@@ -14,6 +14,8 @@ function model(sequelize) {
         favorite: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
         fairness: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
         playType: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0, comment: '0: Freeplay, 1: RealPlay' },
+        droppable: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0 },
+        parent: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     };
 
     const options = {

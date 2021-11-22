@@ -107,7 +107,6 @@ const Register = () => {
         })
     }
     const handlePhoneNumberChange = (number) => {
-        console.log('number ------', number)
         setState({ ...state, mobile: number })
     }
     const setEditorRef = (ed) => {

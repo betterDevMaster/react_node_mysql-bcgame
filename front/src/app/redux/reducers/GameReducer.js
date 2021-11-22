@@ -1,31 +1,31 @@
 import {
-    GET_ALL_USERS,
-    GET_USER,
-    REGISTER_USER,
-    UPDATE_USER,
-    DELETE_USER,
+    GET_ALL_GAMES,
+    GET_GAME,
+    REGISTER_GAME,
+    UPDATE_GAME,
+    DELETE_GAME,
     RESPOPNSE_ERROR,
-} from '../actions/UserActions'
+} from '../actions/GameActions'
 
 const initialState = { data: [], status: false, message: '' }
 
-const UserReducer = function (state = initialState, action) {
+const GameReducer = function (state = initialState, action) {
     switch (action.type) {
-        case GET_ALL_USERS: {
+        case GET_ALL_GAMES: {
             return { ...state, data: action.data }
         }
-        case GET_USER: {
+        case GET_GAME: {
             const arr = [];
             arr.push(action.data)
             return { ...state, data: arr }
         }
-        case REGISTER_USER: {
+        case REGISTER_GAME: {
             return { ...state, status: action.status, message: action.message }
         }
-        case UPDATE_USER: {
+        case UPDATE_GAME: {
             return { ...state, status: action.status, message: action.message }
         }
-        case DELETE_USER: {
+        case DELETE_GAME: {
             return { ...state, status: action.status, message: action.message }
         }
         case RESPOPNSE_ERROR: {
@@ -37,4 +37,4 @@ const UserReducer = function (state = initialState, action) {
     }
 }
 
-export default UserReducer
+export default GameReducer
