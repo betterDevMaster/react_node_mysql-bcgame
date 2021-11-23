@@ -9,6 +9,7 @@ const gameService = require("./games.service");
 router.post("/register", authorize(), registerSchema, register);
 router.get("/", authorize(), getAll);
 router.post("/", authorize(), saveAll);
+router.put("/", authorize(), update);
 router.get('/:id', authorize(), getById);
 
 module.exports = router;
@@ -48,6 +49,14 @@ function saveAll(req, res, next) {
     .saveAll(req.body)
     .then(() =>
       res.json({ status: true, message: "Game registered successfully" })
+    )
+    .catch(next);
+}
+function update(req, res, next) {
+  gameService
+    .update(req.body)
+    .then(() =>
+      res.json({ status: true, message: "Game updated successfully" })
     )
     .catch(next);
 }

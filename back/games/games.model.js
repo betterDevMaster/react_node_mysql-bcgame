@@ -8,7 +8,7 @@ function model(sequelize) {
         gameType: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0, comment: '0: OriginalGame, 1: Slots, 2: Casinos' },
         gameUrl: { type: DataTypes.STRING, allowNull: true },
         description: { type: DataTypes.STRING, allowNull: true },
-        icon: { type: DataTypes.STRING, allowNull: true },
+        icon: { type: DataTypes.TEXT('long'), allowNull: true },
         image: { type: DataTypes.TEXT('long') , allowNull: true },
         supportedPlayType: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 0, comment: '0: DemoPlay, 1: Mobile' },
         favorite: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },

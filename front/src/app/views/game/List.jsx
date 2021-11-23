@@ -38,6 +38,7 @@ const getLastId = (treeData) => {
 
 function List() {
     const [treeData, setTreeData] = useState(null)
+    // const [insertData, setInsertData] = useState(null)
     const [selectedData, setSelectedData] = useState(null)
     const handleDrop = (newTree) => setTreeData(newTree)
     const [open, setOpen] = useState(false)
@@ -78,7 +79,7 @@ function List() {
     const handleCloseDialog = () => {
         setOpen(false)
     }
-    const handleSubmit = (newNode) => {
+    const handleSubmit = async (newNode) => {
         if (selectedData) {
             const curIndex = treeData.findIndex(
                 (ele) => ele.id === selectedData.id
@@ -88,6 +89,7 @@ function List() {
             setTreeData(treeData)
         } else {
             const lastId = getLastId(treeData) + 1
+            newNode.id = lastId
             setTreeData([
                 ...treeData,
                 {
@@ -96,17 +98,32 @@ function List() {
                 },
             ])
         }
-        setSelectedData(null)
+        // setInsertData(newNode)
         setOpen(false)
-    }
-    const handleSaveChanges = async () => {
-        const response = await axios.post('/games/', treeData)
+
+        let response
+        if (selectedData) response = await axios.put('/games/', newNode)
+        else response = await axios.post('/games/', newNode)
+
         setRespContent({
             status: response.data.status,
             message: response.data.message,
         })
+        setSelectedData(null)
         setSnackbarOpen(true)
     }
+    // const handleSaveChanges = async () => {
+    //     let response
+    //     if (selectedData) response = await axios.put('/games/', insertData)
+    //     else response = await axios.post('/games/', insertData)
+
+    //     setRespContent({
+    //         status: response.data.status,
+    //         message: response.data.message,
+    //     })
+    //     setSelectedData(null)
+    //     setSnackbarOpen(true)
+    // }
     const handleSnackbarClose = (e) => {
         setSnackbarOpen(false)
     }
@@ -127,14 +144,14 @@ function List() {
                                 >
                                     Add Node
                                 </Button>
-                                <Button
+                                {/* <Button
                                     onClick={handleSaveChanges}
                                     startIcon={<SaveIcon />}
                                     color="secondary"
                                     variant="contained"
                                 >
                                     Save
-                                </Button>
+                                </Button> */}
                                 {open && (
                                     <AddDialog
                                         tree={treeData}

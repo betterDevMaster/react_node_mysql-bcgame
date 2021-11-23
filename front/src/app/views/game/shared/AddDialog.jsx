@@ -16,30 +16,27 @@ import {
     Snackbar,
 } from '@material-ui/core'
 import styles from '../style//AddDialog.module.css'
-import { AvatarEditor, MatxSnackbar } from 'app/components'
+import { ImageUploader, MatxSnackbar } from 'app/components'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
 })
 
 export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
-    var editor = null
     const [state, setState] = useState({
         name: selected ? selected.name : '',
-        gameUrl: selected? selected.gameUrl : '',
-        gameType: selected? selected.gameType : 0,
-        description: selected? selected.description : '',
-        supportedPlayType: selected? selected.supportedPlayType : 0,
-        playType: selected? selected.playType : 0,
-        parent: selected? selected.parent : 1,
-        image: selected? selected.image : '',
-        droppable: selected? selected.droppable : false,
+        gameUrl: selected ? selected.gameUrl : '',
+        gameType: selected ? selected.gameType : 0,
+        description: selected ? selected.description : '',
+        supportedPlayType: selected ? selected.supportedPlayType : 0,
+        playType: selected ? selected.playType : 0,
+        parent: selected ? selected.parent : 1,
+        icon: selected ? selected.icon : '',
+        image: selected ? selected.image : '',
+        droppable: selected ? selected.droppable : false,
     })
     const [snackbarOpen, setSnackbarOpen] = useState(false)
 
-    const handleAvatarEditor = (ed) => {
-        editor = ed
-    }
     const handleSnackbarClose = (e) => {
         setSnackbarOpen(false)
     }
@@ -49,16 +46,16 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
             setState({ ...state, [event.target.name]: event.target.checked })
         else setState({ ...state, [event.target.name]: event.target.value })
     }
-    const handleSubmit = () => {
-        if (editor) {
-            const canvasScaled = editor.getImageScaledToCanvas()
-            const croppedImg = canvasScaled.toDataURL()
-            state.image = croppedImg
-            setSnackbarOpen(true)
-            onSubmit(state)
-        }
+    const handleIconUpload = (icon) => {
+        setState({ ...state, icon })
     }
-
+    const handleImageUpload = (image) => {
+        setState({ ...state, image })
+    }
+    const handleSubmit = () => {
+        setSnackbarOpen(true)
+        onSubmit(state)
+    }
     return (
         <Dialog
             fullWidth
@@ -113,15 +110,16 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                     fullWidth
                     multiline
                 />
-                <AvatarEditor
-                    onEditorChange={handleAvatarEditor}
-                    panelShow={false}
-                    width={250}
-                    height={250}
-                    border={0}
-                    borderRadius={0}
-                    image={state.image}
-                />
+                <div className="flex justify-center">
+                    <ImageUploader onUpload={handleIconUpload} image={state.icon}/>
+                    <ImageUploader
+                        onUpload={handleImageUpload}
+                        width={180}
+                        height={180}
+                        label="Image"
+                        image={state.image}
+                    />
+                </div>
                 <FormControl className={styles.select}>
                     <InputLabel>SupportedPlayType</InputLabel>
                     <Select
@@ -185,8 +183,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                 <Button
                     disabled={
                         state.name === '' ||
-                        state.gameUrl === '' ||
-                        state.description === ''
+                        state.gameUrl === ''
                     }
                     onClick={handleSubmit}
                 >

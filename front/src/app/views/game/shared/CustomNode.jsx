@@ -39,7 +39,11 @@ export const CustomNode = (props) => {
                     )}
                 </div>
                 <div className={styles.labelGridItem}>
-                    <TypeIcon droppable={droppable} />
+                    {props.node.icon && props.node.icon !== '' ? (
+                        <img className="svg" src={props.node.icon} alt="icon" />
+                    ) : (
+                        <TypeIcon droppable={droppable} />
+                    )}
                 </div>
                 <div className={styles.labelGridItem}>
                     <Typography variant="body2">{props.node.name}</Typography>
