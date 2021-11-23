@@ -132,6 +132,13 @@ export const commonStyles = makeStyles(({ palette, ...theme }) => ({
             width: '18px',
             height: '18px',
             background: '#a9a9a9',
-        }
+        },
+        '.game-icon': {
+            width: '2.5rem',
+            height: '1.75rem',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+        },
     },
 }))

@@ -100,7 +100,13 @@ const MatxVerticalNavExpansionPanel = ({ item, children, mode }) => {
                 onClick={handleClick}
             >
                 <div className="flex items-center">
-                    {icon && (
+                    {icon && icon.includes('data:image') ? (
+                        <img
+                            className="game-icon"
+                            src={icon}
+                            alt="server image"
+                        />
+                    ) : (
                         <Icon className="align-middle text-18 w-36 px-4">
                             {icon}
                         </Icon>

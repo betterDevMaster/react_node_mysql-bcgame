@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Icon } from '@material-ui/core'
 import TouchRipple from '@material-ui/core/ButtonBase'
 import MatxVerticalNavExpansionPanel from './MatxVerticalNavExpansionPanel'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import useSettings from 'app/hooks/useSettings'
-import useAuth from 'app/hooks/useAuth'
+import { getGames } from 'app/redux/actions/GameActions'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     navItem: {
@@ -41,11 +42,42 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const MatxVerticalNav = ({ items }) => {
+const MatxVerticalNav = ({ items, user }) => {
     const { settings } = useSettings()
     const { mode } = settings.layout1Settings.leftSidebar
     const classes = useStyles()
-    const { user } = useAuth()
+    const dispatch = useDispatch()
+    const gameReducer = useSelector(({ game }) => game)
+    const [dispItems, setDispItems] = useState([])
+    useEffect(() => {
+        dispatch(getGames())
+    }, [])
+
+    useEffect(() => {
+        if (gameReducer.data.length > 0) {
+            const navItems = buildNavList(gameReducer.data, 0)
+            navItems.map((g) => convertNavList(g))
+            setDispItems([...items, ...navItems])
+        }
+    }, [gameReducer.data])
+
+    const buildNavList = (data, parent) => {
+        return data
+            .filter((d) => d.parent === parent)
+            .map((d) => ({ ...d, children: buildNavList(data, d.id) }))
+    }
+    const convertNavList = (node) => {
+        node.path = node.gameUrl
+        node.auth = ['SA', 'ADMIN', 'EDITOR']
+        if (node.children) {
+            if (node.children.length > 0)
+                node.children.forEach((el) => {
+                    convertNavList(el)
+                })
+            else delete node.children
+        }
+        return node
+    }
     const renderLevels = (data) => {
         return data.map((item, index) => {
             if (item.auth && item.auth.includes(user.role)) {
@@ -92,11 +124,21 @@ const MatxVerticalNav = ({ items }) => {
                             >
                                 {(() => {
                                     if (item.icon) {
-                                        return (
-                                            <Icon className="text-18 align-middle px-4">
-                                                {item.icon}
-                                            </Icon>
-                                        )
+                                        if (item.icon.includes('data:image')) {
+                                            return (
+                                                <img
+                                                    className="game-icon"
+                                                    src={item.icon}
+                                                    alt="server image"
+                                                />
+                                            )
+                                        } else {
+                                            return (
+                                                <Icon className="text-18 align-middle px-4">
+                                                    {item.icon}
+                                                </Icon>
+                                            )
+                                        }
                                     } else {
                                         return (
                                             <span className="item-icon icon-text">
@@ -142,9 +184,17 @@ const MatxVerticalNav = ({ items }) => {
                                 className="w-full"
                             >
                                 {item?.icon ? (
-                                    <Icon className="text-18 align-middle w-36 px-4">
-                                        {item.icon}
-                                    </Icon>
+                                    item.icon.includes('data:image') ? (
+                                        <img
+                                            className="game-icon"
+                                            src={item.icon}
+                                            alt="server image"
+                                        />
+                                    ) : (
+                                        <Icon className="text-18 align-middle w-36 px-4">
+                                            {item.icon}
+                                        </Icon>
+                                    )
                                 ) : (
                                     <Fragment>
                                         <div
@@ -192,7 +242,7 @@ const MatxVerticalNav = ({ items }) => {
         })
     }
 
-    return <div className="navigation">{renderLevels(items)}</div>
+    return <div className="navigation">{renderLevels(dispItems)}</div>
 }
 
 export default React.memo(MatxVerticalNav)
