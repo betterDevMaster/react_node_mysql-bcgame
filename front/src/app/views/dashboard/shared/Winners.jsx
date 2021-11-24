@@ -1,58 +1,66 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import TopSellingTable from './TopSellingTable'
+import WinnerHisotry from './WinnerHisotry'
+import { useMediaQuery } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
+import { SimpleCard } from 'app/components'
 
-const useStyles = makeStyles(({ palette, ...theme }) => ({
-    icon: {
-        fontSize: '44px',
-        opacity: 0.6,
-        color: palette.primary.main,
+// const useStyles = makeStyles(({ palette, ...theme }) => ({
+//     icon: {
+//         fontSize: '44px',
+//         opacity: 0.6,
+//         color: palette.primary.main,
+//     },
+// }))
+
+const useStyles = makeStyles((theme) => ({
+    button: {
+        margin: theme.spacing(1),
+        borderRadius: '20rem',
+        width: '10rem',
+        height: '3rem',
+    },
+    input: {
+        display: 'none',
     },
 }))
 
 const Winners = () => {
+    const theme = useTheme()
+    const isSMMobile = useMediaQuery(theme.breakpoints.down('sm')) //4
+    const isXSMobile = useMediaQuery(theme.breakpoints.down('xs')) //2
     const classes = useStyles()
-    const imgItems = [{ src: '1.png' }, { src: '2.png' }, { src: '3.png' }]
 
     return (
-        <>
-            <h4 className="card-title text-muted mb-4">
-                Biggest Winners today
-            </h4>
+        <SimpleCard title="Biggest Winners today">
             <Grid container spacing={2} className="mb-3">
-                <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <Grid container spacing={2}>
-                        <Grid
-                            item
-                            lg={5}
-                            md={5}
-                            sm={12}
-                            xs={12}
-                            className="info"
-                        >
-                            <div className="tit">
-                                WINNER WINNER
-                                <br />
+                <Grid item lg={6} xs={12}>
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <h2 className="text-muted mb-8">
                                 CHICKEN DINNER
-                            </div>
-                            <button className="button button-normal">
-                                <div className="button-inner">Play Now</div>
-                            </button>
-                        </Grid>
-                        <Grid item lg={7} md={7} sm={12} xs={12}>
-                            <img
-                                className="game-types-img"
-                                src={'/assets/images/other/winner.png'}
-                            />
-                        </Grid>
-                    </Grid>
+                            </h2>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                            >
+                                Play Now
+                            </Button>
+                        </div>
+                        <img
+                            className="w-300"
+                            src="/assets/images/other/winner.png"
+                            alt=""
+                        />
+                    </div>
                 </Grid>
-                <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <TopSellingTable />
+                <Grid item lg={6} xs={12}>
+                    <WinnerHisotry />
                 </Grid>
             </Grid>
-        </>
+        </SimpleCard>
     )
 }
 

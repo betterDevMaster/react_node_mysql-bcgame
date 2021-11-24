@@ -253,7 +253,6 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 marginTop: '3.125rem',
                 width: '10.125rem',
                 display: 'block',
-                width: '100%',
                 borderRadius: '6.25rem',
                 height: '3rem',
                 fontWeight: 'bold',

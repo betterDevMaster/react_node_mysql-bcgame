@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { useTheme } from '@material-ui/core/styles'
-import { shuffle } from 'lodash'
 
 const columns = [
     { id: 'name', label: 'Game', fontSize: '12px' },
@@ -113,13 +112,13 @@ const RealTimeHisotry = ({ list, onChange }) => {
                     </TableHead>
                     <TableBody>
                         {/* {rows.map((row) => { */}
-                        {testArr.map((row) => {
+                        {testArr.map((row, index) => {
                             return (
                                 <TableRow
                                     hover
                                     role="checkbox"
                                     tabIndex={-1}
-                                    key={row.code}
+                                    key={index}
                                 >
                                     {columns.map((column) => {
                                         const value = row[column.id]
