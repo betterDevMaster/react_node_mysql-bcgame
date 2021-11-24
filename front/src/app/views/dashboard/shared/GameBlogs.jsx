@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const GameTypes = () => {
+const GameBlogs = () => {
     const classes = useStyles()
     const imgItems = [{ src: '1.png' }, { src: '2.png' }, { src: '3.png' }]
     const { height, width } = useWindowDimensions()
@@ -58,4 +58,4 @@ const GameTypes = () => {
     )
 }
 
-export default GameTypes
+export default GameBlogs

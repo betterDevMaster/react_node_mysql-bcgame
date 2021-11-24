@@ -1,12 +1,13 @@
-import React from 'react'
-import { Grid, Icon, useMediaQuery } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { Grid, Icon } from '@material-ui/core'
+import { useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 import { buildNavList } from 'utils'
 
-const OriginalGames = ({ index, list }) => {
+const CasinoGames = ({ index, list }) => {
     const theme = useTheme()
-    const isSMMobile = useMediaQuery(theme.breakpoints.down('sm'))
-    const isXSMobile = useMediaQuery(theme.breakpoints.down('xs'))
+    const isSMMobile = useMediaQuery(theme.breakpoints.down('sm')) //4
+    const isXSMobile = useMediaQuery(theme.breakpoints.down('xs')) //2
 
     return (
         <Grid container spacing={1} className="mt-3 mb-3">
@@ -66,4 +67,4 @@ const OriginalGames = ({ index, list }) => {
     )
 }
 
-export default OriginalGames
+export default CasinoGames

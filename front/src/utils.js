@@ -162,3 +162,9 @@ export function classList(classes) {
         .map((entry) => entry[0])
         .join(' ')
 }
+
+export function buildNavList(data, parent) {
+    return data
+        .filter((d) => d.parent === parent)
+        .map((d) => ({ ...d, children: buildNavList(data, d.id) }))
+}

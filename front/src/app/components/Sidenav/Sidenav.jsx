@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 import Scrollbar from 'react-perfect-scrollbar'
-import { useDispatch, useSelector } from 'react-redux'
 import { navigations } from 'app/navigations'
 import { MatxVerticalNav } from 'app/components'
 import { makeStyles } from '@material-ui/core/styles'

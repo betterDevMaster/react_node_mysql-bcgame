@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import useSettings from 'app/hooks/useSettings'
 import { getGames } from 'app/redux/actions/GameActions'
+import { buildNavList } from 'utils'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     navItem: {
@@ -61,11 +62,6 @@ const MatxVerticalNav = ({ items, user }) => {
         }
     }, [gameReducer.data])
 
-    const buildNavList = (data, parent) => {
-        return data
-            .filter((d) => d.parent === parent)
-            .map((d) => ({ ...d, children: buildNavList(data, d.id) }))
-    }
     const convertNavList = (node) => {
         node.path = node.gameUrl
         node.auth = ['SA', 'ADMIN', 'EDITOR']
