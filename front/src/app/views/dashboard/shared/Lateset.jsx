@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import TopSellingTable from './TopSellingTable'
+import RealTimeHisotry from './RealTimeHisotry'
 import Contest from './Contest'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
@@ -37,7 +37,7 @@ const Lateset = () => {
                         Contest
                     </button>
                 </div>
-                {active === 0 && <TopSellingTable />}
+                {active === 0 && <RealTimeHisotry />}
                 {active === 1 && <Contest />}
             </div>
         </Grid>

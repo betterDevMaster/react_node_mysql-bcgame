@@ -36,17 +36,19 @@ const GameCarousel = ({ gameLoaded }) => {
 
     return (
         gameLoaded && (
-            <AliceCarousel
-                autoPlay
-                animationDuration={3000}
-                // autoWidth
-                infinite
-                // mouseTracking
-                items={items}
-                responsive={responsive}
-                // disableDotsControls
-                disableButtonsControls
-            />
+            <div className="mt-3 mb-3">
+                <AliceCarousel
+                    autoPlay
+                    animationDuration={3000}
+                    // autoWidth
+                    infinite
+                    // mouseTracking
+                    items={items}
+                    responsive={responsive}
+                    disableDotsControls
+                    disableButtonsControls
+                />
+            </div>
         )
     )
 }

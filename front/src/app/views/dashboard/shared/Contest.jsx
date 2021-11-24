@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Grid, Button, Icon } from '@material-ui/core'
-import TopSellingTable from './TopSellingTable'
+import RealTimeHisotry from './RealTimeHisotry'
 
 const Contest = () => {
     return (
@@ -112,7 +112,7 @@ const Contest = () => {
                     </div>
                 </Grid>
             </Card>
-            <TopSellingTable />
+            <RealTimeHisotry />
         </Card>
     )
 }

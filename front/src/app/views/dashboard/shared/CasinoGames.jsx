@@ -35,9 +35,6 @@ const CasinoGames = ({ index, list }) => {
                         }}
                         key={i}
                     >
-                        <div className="tag-wrap">
-                            <div className="tag recommend">Top</div>
-                        </div>
                         <a num="1" className="game-panel" href="/classic-dice">
                             <div className="lazy-img img">
                                 <img

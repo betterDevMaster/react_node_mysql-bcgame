@@ -281,7 +281,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
             height: '2.25rem',
             position: 'relative',
             borderRadius: '1.125rem',
-            backgroundColor: 'rgba(49, 52, 60, 0.7)',
+            backgroundColor: 'rgb(201 197 197)',
             color: 'rgb(245, 246, 247)',
             fontSize: '0.875rem',
             marginLeft: '0.625rem',
@@ -308,7 +308,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 color: 'rgb(245, 246, 247)',
                 fontWeight: 'bold',
                 borderRadius: '1.125rem',
-                backgroundImage: 'linear-gradient(to left, rgb(85, 89, 102), rgb(85, 89, 102), rgb(88, 174, 20))',
+                backgroundImage: 'linear-gradient(to left, rgb(215 215 217), rgb(114 193 185), rgb(130 207 68))',
             }
         },
         '.contest__top': {

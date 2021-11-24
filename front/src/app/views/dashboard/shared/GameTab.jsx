@@ -39,7 +39,7 @@ const GameTab = ({ list, onChange }) => {
     }
 
     return (
-        <Box className={classes.root}>
+        <Box className={clsx('mt-9', classes.root)}>
             <Tabs
                 value={value}
                 onChange={handleChange}
