@@ -16,19 +16,15 @@ const Analytics = () => {
     const dispatch = useDispatch()
     // const gameLoaded = true
     const gameReducer = useSelector(({ game }) => game)
-    const [gameLoaded, setGameLoaded] = useState(false)
     const [curTab, setCurTab] = useState(0)
 
-    useEffect(() => {
-        setGameLoaded(true)
-    }, [])
     const handleTabChange = (index) => {
         setCurTab(index)
     }
     return (
         <div className="analytics m-sm-30 mt-6">
             <Lateset />
-            <GameCarousel gameLoaded={gameLoaded} />
+            <GameCarousel />
             <GameTab list={gameReducer.data} onChange={handleTabChange} />
             {/* <GameBlogs /> */}
             {curTab === 0 && (

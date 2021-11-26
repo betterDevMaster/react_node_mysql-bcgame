@@ -64,7 +64,7 @@ const MatxVerticalNav = ({ items, user }) => {
 
     const convertNavList = (node) => {
         node.path = node.gameUrl
-        node.auth = ['SA', 'ADMIN', 'EDITOR']
+        node.auth = ['SA', 'ADMIN', 'EDITOR', 'GUEST']
         if (node.children) {
             if (node.children.length > 0)
                 node.children.forEach((el) => {

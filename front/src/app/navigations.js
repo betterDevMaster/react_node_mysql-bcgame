@@ -8,12 +8,6 @@ export const navigations = [
         auth: authRoles.guest,
     },
     {
-        name: 'User Profile',
-        path: '/profile',
-        icon: 'verified_user',
-        auth: authRoles.guest,
-    },
-    {
         label: 'Admin Pages',
         type: 'label',
         auth: authRoles.admin,
@@ -47,6 +41,12 @@ export const navigations = [
         icon: 'videogame_asset',
         path: '/game/list',
         auth: authRoles.editor,
+    },
+    {
+        name: 'Promotions',
+        path: '/promotions',
+        icon: 'local_florist',
+        auth: authRoles.guest,
     },
     // {
     //     name: 'Documentation',

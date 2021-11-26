@@ -7,6 +7,21 @@ const gameRoutes = [
         component: React.lazy(() => import('./List')),
         auth: authRoles.editor,
     },
+    {
+        path: '/original/:id',
+        component: React.lazy(() => import('./GamePanel')),
+        auth: authRoles.editor,
+    },
+    {
+        path: '/slot/:id',
+        component: React.lazy(() => import('./GamePanel')),
+        auth: authRoles.editor,
+    },
+    {
+        path: '/casino/:id',
+        component: React.lazy(() => import('./GamePanel')),
+        auth: authRoles.editor,
+    },
 ]
 
 export default gameRoutes

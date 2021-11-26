@@ -11,15 +11,16 @@ import {
     TableBody,
     Avatar,
     Snackbar,
+    useMediaQuery,
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { ConfirmationDialog, MatxSnackbar, SimpleCard } from 'app/components'
 import {
     getUsersByAdmin,
     deleteUserByAdmin,
 } from '../../redux/actions/UserActions'
-import useWindowDimensions from 'app/hooks/useWindowDimensions'
+// import useWindowDimensions from 'app/hooks/useWindowDimensions'
 import history from 'app/services/historyService'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
@@ -44,7 +45,11 @@ const List = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const userReducer = useSelector(({ user }) => user)
-    const { width } = useWindowDimensions()
+    // const { width } = useWindowDimensions()
+    const theme = useTheme()
+    const isSMMobile = useMediaQuery(theme.breakpoints.down('sm'))
+    const isXSMobile = useMediaQuery(theme.breakpoints.down('xs'))
+
     const [openConfirm, setOpenConfirm] = useState({
         userId: 0,
         confirm: false,
@@ -177,7 +182,7 @@ const List = () => {
                                                                 : 'bg-primary'
                                                         }`}
                                                     >
-                                                        {width > 750
+                                                        {isSMMobile
                                                             ? user.role
                                                             : capitalizeFirstLetter(
                                                                   user.role

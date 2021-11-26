@@ -5,6 +5,7 @@ import dashboardRoutes from './views/dashboard/DashboardRoutes'
 import profileRoutes from './views/profile/ProfileRoutes'
 import userRoutes from './views/user/UserRoutes'
 import gameRoutes from './views/game/GameRoutes'
+import promotionRoutes from './views/promotion/PromotionRoutes'
 
 const redirectRoute = [
     {
@@ -25,6 +26,7 @@ const routes = [
     ...profileRoutes,
     ...userRoutes,
     ...gameRoutes,
+    ...promotionRoutes,
     ...redirectRoute,
     ...errorRoute,
 ]

@@ -13,6 +13,7 @@ import { animationStyles } from './utilities/_animations'
 import { settingsStyle } from "./utilities/_settings";
 import { dashboardStyle } from "./utilities/_dashboard";
 import { footerStyle } from "./utilities/_footer";
+import { customCardStyle } from "./utilities/_customCard";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -28,6 +29,7 @@ const GlobalCss = ({ children }) => {
     settingsStyle();
     dashboardStyle();
     footerStyle();
+    customCardStyle();
 
     return children || null
 }

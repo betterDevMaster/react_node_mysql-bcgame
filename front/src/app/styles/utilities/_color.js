@@ -65,6 +65,7 @@ export const colorStyles = makeStyles(({ palette, ...theme }) => ({
         '.bg-light-green': { background: 'rgba(9, 182, 109, 0.15) !important' },
         '.bg-transparent': { background: 'transparent !important' },
         '.text-white': { color: 'rgba(255, 255, 255, 1) !important' },
+        '.text-dark-yellow': { color: 'rgb(255, 205, 22) !important' },
         '.text-black': { color: 'rgba(0, 0, 0, 0.87) !important' },
         '.text-body': { color: 'rgba(var(--body), 0.87) !important' },
         '.text-white-secondary': {

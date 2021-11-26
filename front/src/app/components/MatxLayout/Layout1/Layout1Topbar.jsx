@@ -17,6 +17,7 @@ import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
+import history from 'app/services/historyService'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     topbar: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 }))
 
 const Layout1Topbar = () => {
-    const [ menuSetting, setMenuSetting ] = useState({ profile: false, setting: false })
+    // const [ menuSetting, setMenuSetting ] = useState({ profile: false, setting: false })
     const theme = useTheme()
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
@@ -99,7 +100,8 @@ const Layout1Topbar = () => {
     }
 
     const handleProfile = () => {
-        setMenuSetting({ ...menuSetting, profile: true })
+        history.push('/profile')
+        // setMenuSetting({ ...menuSetting, profile: true })
     }
 
     return (
@@ -107,9 +109,7 @@ const Layout1Topbar = () => {
             <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
                 <div className="flex justify-between items-center h-full">
                     <div className="flex">
-                        <IconButton
-                            onClick={handleSidebarToggle}
-                        >
+                        <IconButton onClick={handleSidebarToggle}>
                             <Icon>menu</Icon>
                         </IconButton>
 
@@ -167,10 +167,10 @@ const Layout1Topbar = () => {
                                     <span className="pl-4"> Profile </span>
                                 </div>
                             </MenuItem>
-                            <MenuItem className={classes.menuItem}>
+                            {/* <MenuItem className={classes.menuItem}>
                                 <Icon> settings </Icon>
                                 <span className="pl-4"> Settings </span>
-                            </MenuItem>
+                            </MenuItem> */}
                             <MenuItem
                                 onClick={logout}
                                 className={classes.menuItem}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Icon, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 import { buildNavList } from 'utils'
+import history from 'app/services/historyService'
 
 const OriginalGames = ({ index, list }) => {
     const theme = useTheme()
@@ -34,7 +35,10 @@ const OriginalGames = ({ index, list }) => {
                         }}
                         key={i}
                     >
-                        <a num="1" className="game-panel" href="/classic-dice">
+                        <a
+                            className="game-panel"
+                            onClick={() => history.push(item.gameUrl)}
+                        >
                             <div className="lazy-img img">
                                 <img
                                     className="game-types-img"

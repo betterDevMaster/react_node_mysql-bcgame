@@ -3,7 +3,7 @@ import AliceCarousel from 'react-alice-carousel'
 import { useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 
-const GameCarousel = ({ gameLoaded }) => {
+const GameCarousel = () => {
     const theme = useTheme()
     const isSMMobile = useMediaQuery(theme.breakpoints.down('sm'))
     const isXSMobile = useMediaQuery(theme.breakpoints.down('xs'))
@@ -35,22 +35,20 @@ const GameCarousel = ({ gameLoaded }) => {
     }
 
     return (
-        gameLoaded && (
-            <div className="mt-3 mb-3">
-                <AliceCarousel
-                    autoPlay
-                    animationDuration={3000}
-                    // autoWidth
-                    infinite
-                    // mouseTracking
-                    items={items}
-                    responsive={responsive}
-                    disableDotsControls
-                    disableButtonsControls
-                />
-            </div>
-        )
+        <div className="mt-3 mb-3">
+            <AliceCarousel
+                autoPlay
+                animationDuration={3000}
+                // autoWidth
+                infinite
+                // mouseTracking
+                items={items}
+                responsive={responsive}
+                disableDotsControls
+                disableButtonsControls
+            />
+        </div>
     )
 }
 
-export default GameCarousel
+export default React.memo(GameCarousel)

@@ -10,6 +10,11 @@ export const animationStyles = makeStyles(({ palette, ...theme }) => ({
             '0%': { transform: 'rotate(0)' },
             '100%': { transform: 'rotate(360deg)' },
         },
+        '@keyframes coin': {
+            '0%': { transform: 'translateY(-5px)' },
+            '50%': { transform: 'translateY(0px)' },
+            '100%': { transform: 'translateY(5px)' },
+        },
         '.spin': { animation: 'spin 3s infinite linear' },
     },
 }))
