@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 
-const BonusCard = ({ active, arrow, disabled }) => {
+const BonusCard = ({ active, arrow, disabled, onDepositDialog }) => {
     const [hover, setHover] = useState(false)
     return (
         <div
@@ -33,7 +33,7 @@ const BonusCard = ({ active, arrow, disabled }) => {
                     </div>
                 )}
             </div>
-            <button className="button button-normal" disabled={disabled}>
+            <button className="button button-normal" disabled={disabled} onClick={() => onDepositDialog()}>
                 <div className="button-inner">Deposit Now</div>
             </button>
         </div>
