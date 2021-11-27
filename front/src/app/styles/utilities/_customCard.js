@@ -3,6 +3,7 @@ import { makeStyles, lighten } from '@material-ui/core/styles'
 export const customCardStyle = makeStyles(({ palette, ...theme }) => ({
     '@global': {
         '.customCard': {
+            gridTemplateColumns: 'repeat(1, 1fr)',
             '& .item:nth-child(1)': {
                 zIndex: '4',
                 '& .mask': {
@@ -471,5 +472,15 @@ export const customCardStyle = makeStyles(({ palette, ...theme }) => ({
                 lineHeight: '1rem',
             },
         },
+        '@media (min-width: 540px)': {
+            '.customCard': {
+                gridTemplateColumns: 'repeat(2, 1fr)',
+            }
+        },
+        '@media (min-width: 1024px)': {
+            '.customCard': {
+                gridTemplateColumns: 'repeat(4, 1fr)',
+            }
+        }
     },
 }))

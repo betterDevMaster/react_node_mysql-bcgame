@@ -5,6 +5,7 @@ export const positioningStyles = makeStyles(({ palette, ...theme }) => ({
         '.hidden': { display: 'none' },
         '.block': { display: 'block !important' },
         '.inline-block': { display: 'inline-block !important' },
+        '.grid': { display: 'grid' },
         '.flex': { display: 'flex' },
         '.flex-column': { display: 'flex', flexDirection: 'column' },
         '.flex-wrap': { flexWrap: 'wrap' },

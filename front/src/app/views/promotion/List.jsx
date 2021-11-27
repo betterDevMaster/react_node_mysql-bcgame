@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+    Box,
     Grid,
     Card,
     Icon,
     IconButton,
     Fab,
-    Table,
-    TableHead,
-    TableRow,
+    CardContent,
+    CardMedia,
+    Typography,
     TableCell,
     TableBody,
     Avatar,
     Snackbar,
+    TextField,
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import SkipNextIcon from '@material-ui/icons/SkipNext'
+
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import {
     BonusCard,
@@ -24,11 +31,18 @@ import {
     GeneralDialog,
     DepositCard,
 } from 'app/components'
+import './promo.css'
 
 const List = () => {
+    const theme = useTheme()
     const [showDialog, setShowDialog] = useState({
         bonus: false,
         deposit: false,
+        shitCode: false,
+        taskHub: false,
+        luckySpin: false,
+        rakeBackBonus: false,
+        rechargeBonus: false,
     })
     const [depositPresent, setDepositPresent] = useState(0)
     return (
@@ -45,7 +59,7 @@ const List = () => {
                     >
                         <Grid
                             item
-                            xs={12}
+                            xs={6}
                             md={4}
                             onClick={() => setShowDialog({ bonus: true })}
                             className="cursor-pointer"
@@ -76,8 +90,8 @@ const List = () => {
                                 </Icon>
                             </p>
                         </Grid>
-                        <Grid item xs={12} md={8}>
-                            <div className="customCard flex justify-end">
+                        <Grid item xs={6} md={8}>
+                            <div className="customCard grid">
                                 <BonusCard
                                     active={true}
                                     arrow={true}
@@ -105,53 +119,125 @@ const List = () => {
                         </Grid>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <Card elevation={3} className="p-4">
-                        <div className="flex items-center">
-                            <Fab
-                                size="medium"
-                                className="bg-light-green circle-44 box-shadow-none"
+                <Grid item xs={12} md={12}>
+                    <section className="hero-section">
+                        <div className="card-grid">
+                            <a
+                                className="card cursor-pointer"
+                                onClick={() =>
+                                    setShowDialog({ shitCode: true })
+                                }
                             >
-                                <Icon className="text-green">trending_up</Icon>
-                            </Fab>
-                            <h5 className="font-medium text-green m-0 ml-3">
-                                Active Users
-                            </h5>
-                        </div>
-                        <div className="pt-4 flex items-center">
-                            <h2 className="m-0 text-muted flex-grow">10.8k</h2>
-                            <div className="flex justify-center items-centerml-3 h-16 w-16 rounded bg-green text-white">
-                                <Icon className="text-14">expand_less</Icon>
-                            </div>
-                            <span className="text-13 text-green ml-1">
-                                (+21%)
-                            </span>
-                        </div>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Card elevation={3} className="p-4">
-                        <div className="flex items-center">
-                            <Fab
-                                size="medium"
-                                className="bg-light-error circle-44 box-shadow-none overflow-hidden"
+                                <div
+                                    className="card__background"
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)',
+                                    }}
+                                ></div>
+                                <div className="card__content">
+                                    <p className="card__category flex items-center">
+                                        Details
+                                        <Icon>chevron_right</Icon>
+                                    </p>
+                                    <h3 className="card__heading">SHITCODE</h3>
+                                    Redeem shitcodes to unlock crypto rewards
+                                </div>
+                            </a>
+                            <a
+                                className="card cursor-pointer"
+                                onClick={() => setShowDialog({ taskHub: true })}
                             >
-                                <Icon className="text-error">star_outline</Icon>
-                            </Fab>
-                            <h5 className="font-medium text-error m-0 ml-3">
-                                Transactions
-                            </h5>
+                                <div
+                                    className="card__background"
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://static.bc.game/static/media/task.aecb4ea3.png)',
+                                    }}
+                                ></div>
+                                <div className="card__content">
+                                    <p className="card__category flex items-center">
+                                        Details
+                                        <Icon>chevron_right</Icon>
+                                    </p>
+                                    <h3 className="card__heading">TASK HUB</h3>
+                                    Keep completing tasks and earning more
+                                    rewards.
+                                </div>
+                            </a>
+                            <a
+                                className="card cursor-pointer"
+                                onClick={() =>
+                                    setShowDialog({ luckySpin: true })
+                                }
+                            >
+                                <div
+                                    className="card__background"
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://static.bc.game/static/media/luck_spin.d96226db.png)',
+                                    }}
+                                ></div>
+                                <div className="card__content">
+                                    <p className="card__category flex items-center">
+                                        Details
+                                        <Icon>chevron_right</Icon>
+                                    </p>
+                                    <h3 className="card__heading">
+                                        LUCKY SPIN BONUS SPIN
+                                    </h3>
+                                </div>
+                            </a>
+                            <a
+                                className="card cursor-pointer"
+                                onClick={() =>
+                                    setShowDialog({ rakeBackBonus: true })
+                                }
+                            >
+                                <div
+                                    className="card__background"
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://static.bc.game/static/media/rakeback.8460dbbc.png)',
+                                    }}
+                                ></div>
+                                <div className="card__content">
+                                    <p className="card__category flex items-center">
+                                        Details
+                                        <Icon>chevron_right</Icon>
+                                    </p>
+                                    <h3 className="card__heading">
+                                        RAKEBACK BONUS
+                                    </h3>
+                                    Winning or Losing, Your Rakeback is Waiting!
+                                </div>
+                            </a>
+                            <a
+                                className="card cursor-pointer"
+                                onClick={() =>
+                                    setShowDialog({ rechargeBonus: true })
+                                }
+                            >
+                                <div
+                                    className="card__background"
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://static.bc.game/static/media/recharge.fc616d35.png)',
+                                    }}
+                                ></div>
+                                <div className="card__content">
+                                    <p className="card__category flex items-center">
+                                        Details
+                                        <Icon>chevron_right</Icon>
+                                    </p>
+                                    <h3 className="card__heading">
+                                        RECHARGE BONUS
+                                    </h3>
+                                    Enjoy a steady stream of recharge.
+                                </div>
+                            </a>
                         </div>
-                        <div className="pt-4 flex items-center">
-                            <h2 className="m-0 text-muted flex-grow">$2.8M</h2>
-                            <div className="flex justify-center items-centerml-3 h-16 w-16 rounded bg-error text-white">
-                                <Icon className="text-14">expand_less</Icon>
-                            </div>
-                            <span className="text-13 text-error ml-1">
-                                (+21%)
-                            </span>
-                        </div>
-                    </Card>
+                    </section>
                 </Grid>
             </Grid>
             <GeneralDialog
@@ -340,6 +426,104 @@ const List = () => {
                             : '+180%'}
                     </span>
                 </div>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.shitCode}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, shitCode: false })
+                }
+                title="Shit Code"
+            >
+                <div className="pb-4">
+                    <TextField
+                        label="Copy your Shitcode here"
+                        name="name"
+                        type="text"
+                        // onChange={handleChange}
+                        // value={state.name}
+                        validators={['required']}
+                        errorMessages={['this field is required']}
+                        fullWidth
+                        variant="outlined"
+                        autoFocus
+                    />
+                </div>
+                <p className="pb-4">
+                    Redeem your shitcode here. Shitcode are bonus codes that
+                    will add a gift to your balance at BC.Game. Shitcode can be
+                    found in many places on the web. Here are a few places you
+                    might discover one:
+                </p>
+                <ul className="py-4">
+                    <li>Special announcements</li>
+                    <li>Posts in the BC.Game forum</li>
+                    <li>In the player’s chat room onsite</li>
+                    <li>Published with campaigns</li>
+                    <li>Social Media Pages and Threads</li>
+                    <li>
+                        Custom links created by and for our affiliate members
+                    </li>
+                    <li>Written on bathroom walls at truck stops</li>
+                </ul>
+                <div className="py-4">
+                    <p>🎁💩🎁💩🎁💩🎁💩</p>
+                    <p>
+                        Any player who attempts to use a code from multiple
+                        accounts will be disqualified and banned from any and
+                        all collection of winnings and bonuses.
+                    </p>
+                </div>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Redeem</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.taskHub}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, taskHub: false })
+                }
+                title="Task Hub"
+            >
+                <p className="pb-4">TaskHub Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Task</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.luckySpin}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, luckySpin: false })
+                }
+                title="LuckySpin"
+            >
+                <p className="pb-4">LuckySpin Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">LuckySpin</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.rakeBackBonus}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, rakeBackBonus: false })
+                }
+                title="RakeBack Bonus"
+            >
+                <p className="pb-4">RakeBack Bonus Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">RakeBack</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.rechargeBonus}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, rechargeBonus: false })
+                }
+                title="Recharge Bonus"
+            >
+                <p className="pb-4">Recharge Bonus Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Recharge</div>
+                </button>
             </GeneralDialog>
         </div>
     )
