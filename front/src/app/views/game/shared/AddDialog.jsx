@@ -15,7 +15,6 @@ import {
     Slide,
     Snackbar,
 } from '@material-ui/core'
-import styles from '../style//AddDialog.module.css'
 import { ImageUploader, MatxSnackbar } from 'app/components'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -63,9 +62,10 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
             open={true}
             onClose={onClose}
             TransitionComponent={Transition}
+            className='gamePanel'
         >
             <DialogTitle>Add New Node</DialogTitle>
-            <DialogContent className={styles.content}>
+            <DialogContent className="content">
                 <TextField
                     label="Name"
                     name="name"
@@ -77,7 +77,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                     fullWidth
                     autoFocus
                 />
-                <FormControl className={styles.select}>
+                <FormControl className="select">
                     <InputLabel>Type</InputLabel>
                     <Select
                         label="Type"
@@ -111,7 +111,10 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                     multiline
                 />
                 <div className="flex justify-center">
-                    <ImageUploader onUpload={handleIconUpload} image={state.icon}/>
+                    <ImageUploader
+                        onUpload={handleIconUpload}
+                        image={state.icon}
+                    />
                     <ImageUploader
                         onUpload={handleImageUpload}
                         width={180}
@@ -120,7 +123,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                         image={state.image}
                     />
                 </div>
-                <FormControl className={styles.select}>
+                <FormControl className="select">
                     <InputLabel>SupportedPlayType</InputLabel>
                     <Select
                         label="SupportedPlayType"
@@ -133,7 +136,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                     </Select>
                 </FormControl>
 
-                <FormControl className={styles.select}>
+                <FormControl className="select">
                     <InputLabel>PlayType</InputLabel>
                     <Select
                         label="PlayType"
@@ -146,7 +149,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
                     </Select>
                 </FormControl>
 
-                <FormControl className={styles.select}>
+                <FormControl className="select">
                     <InputLabel>Parent</InputLabel>
                     <Select
                         label="Parent"
@@ -181,10 +184,7 @@ export const AddDialog = ({ selected, tree, onSubmit, onClose }) => {
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
                 <Button
-                    disabled={
-                        state.name === '' ||
-                        state.gameUrl === ''
-                    }
+                    disabled={state.name === '' || state.gameUrl === ''}
                     onClick={handleSubmit}
                 >
                     Submit

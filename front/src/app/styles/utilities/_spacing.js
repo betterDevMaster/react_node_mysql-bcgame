@@ -92,6 +92,8 @@ export const spacingStyles = makeStyles(({ palette, ...theme }) => ({
         '.h-150px': { height: '150px !important' },
         '.size-36': { height: '36px !important', width: '36px !important' },
         '.size-24': { height: '24px !important', width: '24px !important' },
+        '.radius-10': { borderRadius: '10px !important' },
+        '.radius-20': { borderRadius: '20px !important' },
         ...generateMarginPadding(0, 25, 0.25, 'rem'),
         ...generateMarginPadding(1, 16, 1, 'px'),
         ...generateMarginPadding(-25, -1, 0.25, 'rem'),

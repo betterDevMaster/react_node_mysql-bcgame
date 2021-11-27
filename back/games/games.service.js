@@ -7,6 +7,7 @@ module.exports = {
   getById,
   saveAll,
   update,
+  delete: _delete
 };
 
 async function create(params) {
@@ -58,4 +59,9 @@ async function getById(id) {
   const game = await db.Game.findByPk(id);
   if (!game) throw "Game not found";
   return game;
+}
+
+async function _delete(id) {
+  const game = await getById(id);
+  await game.destroy();
 }

@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton'
 import { ArrowRight, Delete, Edit } from '@material-ui/icons'
 import { useDragOver } from '@minoru/react-dnd-treeview'
 import { TypeIcon } from './TypeIcon'
-import styles from '../style/CustomNode.module.css'
 
 export const CustomNode = (props) => {
     const [hover, setHover] = useState(false)
@@ -20,7 +19,7 @@ export const CustomNode = (props) => {
 
     return (
         <div
-            className={`tree-node ${styles.root}`}
+            className="tree-node nodeRoot"
             style={{ paddingInlineStart: indent }}
             {...dragOverProps}
             onMouseEnter={() => props.node.id > 3 && setHover(true)}
@@ -28,9 +27,9 @@ export const CustomNode = (props) => {
         >
             <div className="flex">
                 <div
-                    className={`${styles.expandIconWrapper} ${
-                        props.isOpen ? styles.isOpen : ''
-                    }`}
+                    className={
+                        'expandIconWrapper ' + `${props.isOpen ? 'isOpen' : ''}`
+                    }
                 >
                     {props.node.droppable && (
                         <div onClick={handleToggle}>
@@ -38,20 +37,20 @@ export const CustomNode = (props) => {
                         </div>
                     )}
                 </div>
-                <div className={styles.labelGridItem}>
+                <div className="labelGridItem">
                     {props.node.icon && props.node.icon !== '' ? (
                         <img className="svg" src={props.node.icon} alt="icon" />
                     ) : (
                         <TypeIcon droppable={droppable} />
                     )}
                 </div>
-                <div className={styles.labelGridItem}>
+                <div className="labelGridItem">
                     <Typography variant="body2">{props.node.name}</Typography>
                 </div>
             </div>
             {hover && (
                 <div className="flex">
-                    <div className={styles.actionButton}>
+                    <div className="actionButton">
                         <IconButton
                             size="small"
                             onClick={() => props.onEdit(id)}
@@ -59,7 +58,7 @@ export const CustomNode = (props) => {
                             <Edit fontSize="small" />
                         </IconButton>
                     </div>
-                    <div className={styles.actionButton}>
+                    <div className="actionButton">
                         <IconButton
                             size="small"
                             onClick={() => props.onDelete(id)}

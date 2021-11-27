@@ -15,6 +15,7 @@ import {
     Avatar,
     Snackbar,
     TextField,
+    useMediaQuery,
 } from '@material-ui/core'
 
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
@@ -31,10 +32,10 @@ import {
     GeneralDialog,
     DepositCard,
 } from 'app/components'
-import './promo.css'
 
 const List = () => {
     const theme = useTheme()
+    const isXSMobile = useMediaQuery(theme.breakpoints.down('xs'))
     const [showDialog, setShowDialog] = useState({
         bonus: false,
         deposit: false,
@@ -43,6 +44,9 @@ const List = () => {
         luckySpin: false,
         rakeBackBonus: false,
         rechargeBonus: false,
+        roll: false,
+        cocoBonus: false,
+        rain: false,
     })
     const [depositPresent, setDepositPresent] = useState(0)
     return (
@@ -51,7 +55,10 @@ const List = () => {
                 <Grid item xs={12} md={12}>
                     <Card
                         elevation={3}
-                        className="p-8 text-white flex"
+                        className={clsx(
+                            'p-8 text-white',
+                            isXSMobile ? null : 'flex'
+                        )}
                         style={{
                             backgroundImage:
                                 'radial-gradient(circle at 92% -19%, rgb(179, 70, 34), rgb(181, 62, 22) 17%, rgb(196, 73, 33) 200%)',
@@ -59,10 +66,14 @@ const List = () => {
                     >
                         <Grid
                             item
-                            xs={6}
+                            xs={12}
                             md={4}
                             onClick={() => setShowDialog({ bonus: true })}
-                            className="cursor-pointer"
+                            className=""
+                            className={clsx(
+                                'cursor-pointer',
+                                isXSMobile ? 'mb-8' : null
+                            )}
                         >
                             <h2 className="flex-grow">GREAT BONUS FOR</h2>
                             <h2 className="flex-grow text-dark-yellow">
@@ -90,7 +101,7 @@ const List = () => {
                                 </Icon>
                             </p>
                         </Grid>
-                        <Grid item xs={6} md={8}>
+                        <Grid item xs={12} md={8}>
                             <div className="customCard grid">
                                 <BonusCard
                                     active={true}
@@ -111,7 +122,7 @@ const List = () => {
                                     disabled={true}
                                 />
                                 <BonusCard
-                                    active={false}
+                                    active={true}
                                     arrow={false}
                                     disabled={true}
                                 />
@@ -238,6 +249,94 @@ const List = () => {
                             </a>
                         </div>
                     </section>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    md={12}
+                    className={isXSMobile ? null : 'flex'}
+                >
+                    <Grid item xs={12} md={4}>
+                        <Grid
+                            item
+                            xs={12}
+                            md={12}
+                            className={clsx(
+                                'bg-gray px-4 py-4 radius-10 flex cursor-pointer',
+                                isXSMobile ? ' mb-4' : 'mr-4'
+                            )}
+                            onClick={() => setShowDialog({ roll: true })}
+                        >
+                            <Grid item xs={6} md={6}>
+                                <h3 class="text-3xl font-bold">
+                                    Roll Competition
+                                </h3>
+                                <p>Roll your way to Daily Victory!</p>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                                <img
+                                    src="https://static.bc.game/static/media/roll_competition.fcdafca4.png"
+                                    alt=""
+                                    class="w-full"
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Grid
+                            item
+                            xs={12}
+                            md={12}
+                            className={clsx(
+                                'bg-gray px-4 py-4 radius-10 flex cursor-pointer',
+                                isXSMobile ? ' mb-4' : 'mr-4'
+                            )}
+                            onClick={() => setShowDialog({ cocoBonus: true })}
+                        >
+                            <Grid item xs={6} md={6}>
+                                <h3 class="text-3xl font-bold">
+                                    Where is Coco Bonus
+                                </h3>
+                                <p>
+                                    Coco plays Hide and Seek! Did you catch him
+                                    yet?
+                                </p>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                                <img
+                                    src="https://static.bc.game/static/media/where_is_coco.fb189022.png"
+                                    alt=""
+                                    class="w-full"
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Grid
+                            item
+                            xs={12}
+                            md={12}
+                            className={clsx(
+                                'bg-gray px-4 py-4 radius-10 flex cursor-pointer'
+                            )}
+                            onClick={() => setShowDialog({ rain: true })}
+                        >
+                            <Grid item xs={6} md={6}>
+                                <h3 class="text-3xl font-bold">Rain</h3>
+                                <p>
+                                    It's raining coins in chatrooms! 6 hours 6
+                                    winners!
+                                </p>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                                <img
+                                    src="https://static.bc.game/static/media/rain.e8e951c7.png"
+                                    alt=""
+                                    class="w-full"
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
             <GeneralDialog
@@ -523,6 +622,42 @@ const List = () => {
                 <p className="pb-4">Recharge Bonus Content</p>
                 <button className="button-normal deposit-btn">
                     <div className="button-inner">Recharge</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.roll}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, roll: false })
+                }
+                title="Roll Competition"
+            >
+                <p className="pb-4">Roll Competition Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Roll</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.cocoBonus}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, cocoBonus: false })
+                }
+                title="Coco Bonus"
+            >
+                <p className="pb-4">Coco Bonus Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Coco Bonus</div>
+                </button>
+            </GeneralDialog>
+            <GeneralDialog
+                open={showDialog.rain}
+                onDialogClose={() =>
+                    setShowDialog({ ...showDialog, rain: false })
+                }
+                title="Rain"
+            >
+                <p className="pb-4">Rain Content</p>
+                <button className="button-normal deposit-btn">
+                    <div className="button-inner">Rain</div>
                 </button>
             </GeneralDialog>
         </div>

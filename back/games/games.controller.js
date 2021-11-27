@@ -10,7 +10,8 @@ router.post("/register", authorize(), registerSchema, register);
 router.get("/", authorize(), getAll);
 router.post("/", authorize(), saveAll);
 router.put("/", authorize(), update);
-router.get('/:id', authorize(), getById);
+router.get("/:id", authorize(), getById);
+router.delete("/:id", authorize(), _delete);
 
 module.exports = router;
 
@@ -62,7 +63,17 @@ function update(req, res, next) {
 }
 
 function getById(req, res, next) {
-  gameService.getById(req.params.id)
-      .then(game => res.json(game))
-      .catch(next);
+  gameService
+    .getById(req.params.id)
+    .then((game) => res.json(game))
+    .catch(next);
+}
+
+function _delete(req, res, next) {
+  gameService
+    .delete(req.params.id)
+    .then(() =>
+      res.json({ status: true, message: "Game deleted successfully" })
+    )
+    .catch(next);
 }
