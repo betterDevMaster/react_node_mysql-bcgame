@@ -15,6 +15,11 @@ export const animationStyles = makeStyles(({ palette, ...theme }) => ({
             '50%': { transform: 'translateY(0px)' },
             '100%': { transform: 'translateY(5px)' },
         },
+        '@keyframes strok': {
+            '100%': {
+                strokeDashoffset: '400',
+            },
+        },
         '.spin': { animation: 'spin 3s infinite linear' },
     },
 }))

@@ -6,6 +6,7 @@ import profileRoutes from './views/profile/ProfileRoutes'
 import userRoutes from './views/user/UserRoutes'
 import gameRoutes from './views/game/GameRoutes'
 import promotionRoutes from './views/promotion/PromotionRoutes'
+import fairRoutes from './views/fair/FairRoutes'
 
 const redirectRoute = [
     {
@@ -27,6 +28,7 @@ const routes = [
     ...userRoutes,
     ...gameRoutes,
     ...promotionRoutes,
+    ...fairRoutes,
     ...redirectRoute,
     ...errorRoute,
 ]

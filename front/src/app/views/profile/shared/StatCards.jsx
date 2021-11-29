@@ -20,8 +20,9 @@ const StatCards = ({ user, onItemClick }) => {
         <Grid container spacing={3} className="mb-3">
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper cursor-pointer"
                     elevation={6}
+                    onClick={() => handleItem(0)}
                 >
                     <div className="flex items-center">
                         <Icon className={classes.icon}>
@@ -37,7 +38,7 @@ const StatCards = ({ user, onItemClick }) => {
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton onClick={() => handleItem(0)}>
+                        <IconButton>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -45,8 +46,9 @@ const StatCards = ({ user, onItemClick }) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between align-center p-sm-12 bg-paper"
+                    className="flex flex-wrap justify-between align-center p-sm-12 bg-paper cursor-pointer"
                     elevation={6}
+                    onClick={() => handleItem(1)}
                 >
                     <div className="flex items-center">
                         <Icon className={classes.icon}>settings</Icon>
@@ -57,7 +59,7 @@ const StatCards = ({ user, onItemClick }) => {
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton onClick={() => handleItem(1)}>
+                        <IconButton>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -65,8 +67,9 @@ const StatCards = ({ user, onItemClick }) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper cursor-pointer"
                     elevation={6}
+                    onClick={() => handleItem(2)}
                 >
                     <div className="flex items-center">
                         <Icon className={classes.icon}>account_box</Icon>
@@ -77,7 +80,7 @@ const StatCards = ({ user, onItemClick }) => {
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton onClick={() => handleItem(2)}>
+                        <IconButton>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>
@@ -85,8 +88,9 @@ const StatCards = ({ user, onItemClick }) => {
             </Grid>
             <Grid item xs={12} md={12}>
                 <Card
-                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper"
+                    className="flex flex-wrap justify-between items-center p-sm-12 bg-paper cursor-pointer"
                     elevation={6}
+                    onClick={() => handleItem(3)}
                 >
                     <div className="flex items-center">
                         <Icon className={classes.icon}>security</Icon>
@@ -97,7 +101,7 @@ const StatCards = ({ user, onItemClick }) => {
                         </div>
                     </div>
                     <Tooltip title="View Details" placement="top">
-                        <IconButton onClick={() => handleItem(3)}>
+                        <IconButton>
                             <Icon>arrow_right_alt</Icon>
                         </IconButton>
                     </Tooltip>

@@ -27,8 +27,8 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 '& :hover': {
                     background: '#fff',
                     color: '#222',
-                }
-            }
+                },
+            },
         },
 
         // Slider
@@ -55,7 +55,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 '&.active': {
                     opacity: '1',
                 },
-                "&:nth-child(1)": {
+                '&:nth-child(1)': {
                     transform: 'translate(-50%,-50%) rotate(0deg)',
                 },
                 '&:nth-child(2)': {
@@ -73,11 +73,11 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                     transform: 'translate(1px, 728px)',
                     '& img': {
                         clipPath: 'url(#quarterMask)',
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
-        'nav': {
+        '.nav': {
             position: 'absolute',
             bottom: '30%',
             left: '50%',
@@ -95,7 +95,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
             },
             '& .next': {
                 float: 'right',
-            }
+            },
         },
         '.slider-img': {
             padding: '0px 0.2rem',
@@ -115,11 +115,11 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
             imageRendering: '-webkit-optimize-contrast',
             cursor: 'pointer',
             '&:hover': {
-                transform: 'scale(1.02)'
+                transform: 'scale(1.02)',
             },
             '&:focus': {
-                outline: 'none'
-            }
+                outline: 'none',
+            },
         },
         '.tag-wrap': {
             position: 'absolute',
@@ -143,7 +143,8 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 marginLeft: '-0.4375rem',
             },
             '& .recommend': {
-                backgroundImage: "url(data:image/png,base64,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)",
+                backgroundImage:
+                    'url(data:image/png,base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAA3lBMVEUAAAD/7Qf//xr/5AD/2gH/5QL/5gL/5gL/7AX/5AD/3gH/6QD/2AH/4AH/4gD/4AH/5QD/4QH/3QL/2wL/3QL/3AL/2QL/6gH/6wH/4gP/3QP/6wP/6xT//wD/6gD/4wH/4wD/4wD/6gH/2QH/zwL/wgL/ygL/vgP/1gH/0gH/uQP/1AH/xQL/zAL/xwL/4AD/swT/tgP/pgT/2wH/uwP/3QH/sAT/rgT/qgT/rAT/5wD/qAT/4gD/owX/nwX/oQX/nQX/lQX+swP/mQX/mwX/lwX/5AD/kAb/jQb/kgYGlk3wAAAAI3RSTlMAEgLbxFdHOxrt5uHgy8i1saeinI98aWJgUEsmDQXw0+7T8Nq7v6UAAAZCSURBVFjDzZnpdhJBEIUlQIBsZCGJZlc0ahQJDBOWIWogoL7/C3lvVU33DGQwZ354UkRwUL9za+mq7vbV/7X16vJ31fX8vPPNi9eL372+2DzPDTwejUa71ZS8XXx1nJe3VpzPx+Na2X9Tro3H83lxLSewPB6P27C9gj4X9viEL8s5gW/btLAdbJzw8WQjwAPtMh/vDVlhEDaDZvPg7OwAnwGeyXyTC7iNfw2I2taWfOAZ1GA7Vw0GCvuUMjJheWqxFCjtC+0zTH5jzNKzEIXKacFVRIU0omjvxT4blsyKq63CaaWQAayMYLXiTn2/cXhUIs5YrfetFt+NSmTp6LCxX98p1kawSgbwdDSas/CYCsGZsuvrFkzehapIOB6GKMv5aHSa5TJ5YRgydoYDJ22ta4fEXzNilstrI9EXgGfqBPctYXymUCKpMeDSGWUuxRrWBXHkwTnIIe1rwvBIlfhDEj+BCI21zDQX4bCEL/ZWaB+SBiaQ6rcEEsBiJnAnDDV8oCnOaB/FkkiK1ECG4U4msB6YPodTWK9Hnrw5JCNpGuuZwH3NhyRDcWQQeHPT40uggoRIEDUz+5nARrDEI8cbyI5IoBIbmcBD4TG730ye4DrO8OCQDKQSDzOBR1p/ntcj7bYzuYVNbvE7Mum4EbUej7J4lRKAwCmP8oibkHUHw8eESBFpRAljqfJ0/yupwxY/ZAI8IAjrD/v4EShkIpTUaHGk06X15X6/HQQeKProLrX1ARsO8CKTOuE2ieY0gUG4/WYtuYjLl+00z/yFvCFp0YAWDSH0DuGkRnrtJHLBXJZj5PlxEU0mBrYMCB69BS4adKNuF78iIFUkNBLoJTYDNIni8bnEblO6IBadF+h5ENY1IxNIEjvUaBJJpEL2sU3GsnpBoK2RlggEDjwA+4q7v7//8QNvZEaDPiRCI5zWRJtEAi+qsv0ZUaB6nBbYR/SiLmnfYWQCCLcRRwOSaGlhY7St1e5Y22AskAqZX4QPwRPcT5ggoXEAr5nqhM9QCOJ4N95SsbH6HKvAjggkj7hHmCDvAaTTBJJIoEhko626XRF4AvQpnjgecdPZbDqbEkmNKtEl2hVOYg+1B6APoUbQAx9nDzPYA4gmcSiJtiC2LIh7yXm3IcB0CPuR8KjvQW1mRPis6yWhMNhIzb4TJplV7UPIFAuQuD+/fv0BcKo+I4qWZ6ttunxCjrcDl2QIJBAeUyEFkvf7N4lTEOMgSiPT1cc0H7xK29kWgLFClLWF0DwGD8QHjSJqEUBV6Opm6+xJ4HUKGEUETh0QqRFg14A35rIBl11OxpBlzSSLQrrMIM6okEnBYukkFS67fMIs+5XMLGsMKdEl5UGTQoXIso+hT4ovmyBZ2LZQoihdNr4Q4TGBqcJOlc1e8ERhD31hgyiF/ahVY8CPFkMFsrD90munFJKYXnowZsR5DKBbejYFuPR8cwj9ACCQQWQ3dM1h+igrWXiu2xDox0qiOexaP/QN23ebaLF9Rc7jGy5lBYpAaV/WYMnzPlslmsR0gxWBbqr4nJDIBmsjgMTkCNC0TEiMovQIEN5tsgotJxwB76puSIWpIQWgDSmbeWZwNz2kLIQQaEPKjVGfFpXoxx5MZqiN0aGO0YW5HNgYdYP+bdyzXW3LcqHXmMx0HMOe7pq/PoJuLr+1Qe+3Ip7otyIg3oEyGMLwSXepb1FgE1uRlZslR5zQb93ekIb60/HkZ6htllZs5/z2kF4D6bZzYm475x0uVVZuOP0GsSciBdgBiiHV8PViXss2nKu3xCxG85ois7fErX9uiRtxiyBRRaZ37XgwecKzjDT+fawwIgqSRqj8yFnF8Z5xrKgTqMT0wQevxYOPVQxruv6MoxkCaUiDKow0w9nRjE1hZ+Xh0TQunPbET6+O9RfrC1ccHq9w+jWiJnv5eOtx8WE0bF+9yj6Ay/kWSCUiOcsHcJ6WybMjfbjiAF7QK4f0FQF1emMqnn9FYJcYoZwIHNKg8iM0f4kR+EuM7GuWq6euWQDKuGa5kmuW/3URlLZSM+uqClbKdZmGKD15mYZkrOe67uPdoZi/7iMPSdvOeSHZBjKAIL2QDKCNzyEvJHPZJYuSL3dlymfY5Uu51M2+dn4pF+OZV/cv5z8X8thfVhm9gB/sr5cAAAAASUVORK5CYII=)',
             },
         },
         '.game-panel': {
@@ -234,12 +235,12 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                         width: '1.4em',
                         height: '1.4em',
                         fill: 'rgba(153, 164, 176, 0.6)',
-                    }
+                    },
                 },
             },
         },
         '.alice-carousel__dots': {
-            margin: '20px 3px 5px !important'
+            margin: '20px 3px 5px !important',
         },
         '.info': {
             '& .tit': {
@@ -257,7 +258,8 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 height: '3rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
-                transition: 'transform 0.2s cubic-bezier(0.36, 0.66, 0.04, 1) 0s',
+                transition:
+                    'transform 0.2s cubic-bezier(0.36, 0.66, 0.04, 1) 0s',
                 border: 'none',
                 '& .button-inner': {
                     display: 'flex',
@@ -265,13 +267,14 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                     justifyContent: 'center',
                     width: '100%',
                     height: '100%',
-                }
+                },
             },
             '& .button-normal': {
                 color: 'rgb(245, 246, 247)',
                 boxShadow: 'rgb(29 34 37 / 10%) 0px 4px 8px 0px',
                 backgroundColor: 'rgb(241, 149, 17)',
-                backgroundImage: 'conic-gradient(from 1turn, rgb(241, 149, 17), rgb(246, 199, 34))',
+                backgroundImage:
+                    'conic-gradient(from 1turn, rgb(241, 149, 17), rgb(246, 199, 34))',
             },
         },
         '.tabs-navs': {
@@ -307,8 +310,9 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 color: 'rgb(245, 246, 247)',
                 fontWeight: 'bold',
                 borderRadius: '1.125rem',
-                backgroundImage: 'linear-gradient(to left, rgb(215 215 217), rgb(114 193 185), rgb(130 207 68))',
-            }
+                backgroundImage:
+                    'linear-gradient(to left, rgb(215 215 217), rgb(114 193 185), rgb(130 207 68))',
+            },
         },
         '.contest__top': {
             display: 'flex',
@@ -322,11 +326,12 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 lineHeight: '1.3125rem',
                 fontSize: '1rem',
                 fontWeight: '600',
-                marginTop: "1rem",
+                marginTop: '1rem',
                 textAlign: 'center',
                 color: 'rgb(93, 160, 0)',
                 marginLeft: '0.625rem',
-                backgroundImage: 'url(https://static.bc.game/static/media/grass_left.c0bdebd7.svg), url(https://static.bc.game/static/media/grass_right.3727bc58.svg)',
+                backgroundImage:
+                    'url(https://static.bc.game/static/media/grass_left.c0bdebd7.svg), url(https://static.bc.game/static/media/grass_right.3727bc58.svg)',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'left center, right center',
                 backgroundSize: 'auto 100%',
@@ -377,7 +382,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                     lineHeight: '1.33',
                     marginTop: '1.625rem',
                     marginBottom: '1.125rem',
-                    textAlign: 'center'
+                    textAlign: 'center',
                 },
                 '& .contest-countdown': {
                     display: 'flex',
@@ -407,7 +412,8 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                                 width: '100%',
                                 height: '50%',
                                 boxShadow: 'rgb(0 0 0 / 2%) 0px 2px 3px 0px',
-                                backgroundImage: 'linear-gradient(rgb(30, 32, 36) -31%, rgb(53, 58, 67) 100%)',
+                                backgroundImage:
+                                    'linear-gradient(rgb(30, 32, 36) -31%, rgb(53, 58, 67) 100%)',
                             },
                             '& .count-name': {
                                 fontSize: '0.75rem',
@@ -419,7 +425,7 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                                 zIndex: '2',
                                 fontSize: '1.375rem',
                                 fontWeight: '600',
-                            }
+                            },
                         },
                         '& .count-line': {
                             fontSize: '1.5rem',
@@ -522,6 +528,87 @@ export const dashboardStyle = makeStyles(({ palette, ...theme }) => ({
                 marginLeft: '0.375rem',
                 fontWeight: '600',
             },
-        }
+        },
+
+        // GameTab
+        '.gameTab': {
+            '& .menu': {
+                margin: '0 auto',
+                display: 'flex',
+                width: '22em',
+                fontSize: '1.5em',
+                padding: '0 30px',
+                position: 'relative',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#1d1d27',
+                borderRadius: '20px',
+            },
+            '& .menu__item': {
+                all: 'unset',
+                flexGrow: '1',
+                zIndex: '100',
+                display: 'flex',
+                cursor: 'pointer',
+                position: 'relative',
+                borderRadius: '50%',
+                alignItems: 'center',
+                willChange: 'transform',
+                justifyContent: 'center',
+                transition: 'transform var(--timeOut, .7s)',
+            },
+            '& .menu__item::before': {
+                content: "''",
+                zIndex: '-1',
+                width: '4.2em',
+                height: '4.2em',
+                borderRadius: '50%',
+                position: 'absolute',
+                transform: 'scale(0)',
+                transition: 'backgroundColor .7s, transform .7s',
+            },
+            '& .menu__item.active': {
+                transform: 'translate3d(0, -0.8em, 0)',
+            },
+            '& .menu__item.active::before': {
+                transform: 'scale(1)',
+            },
+            '& .icon': {
+                width: '2em',
+                height: '2em',
+                stroke: 'white',
+                fill: 'transparent',
+                strokeWidth: '1pt',
+                strokeMiterlimit: '10',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                strokeDasharray: '400',
+                padding: '.5rem',
+                borderRadius: '50%',
+            },
+            '& .menu__item.active .icon': {
+                animation: 'strok 1.5s reverse',
+            },
+            
+            '& .menu__border': {
+                left: '0',
+                bottom: '98%',
+                height: '1.7em',
+                position: 'absolute',
+                clipPath: 'url(#menu)',
+                willChange: 'transform',
+                backgroundColor: '#1d1d27',
+                transition: 'transform var(--timeOut, .7s)',
+            },
+            '& .svg-container': {
+                width: '0',
+                height: '0',
+            },
+            '@media screen and (max-width: 50em)': {
+                '& .menu': {
+                    fontSize: '0.8em',
+                },
+            },
+        },
     },
 }))

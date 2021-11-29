@@ -15,6 +15,7 @@ import { dashboardStyle } from "./utilities/_dashboard";
 import { footerStyle } from "./utilities/_footer";
 import { customCardStyle } from "./utilities/_customCard";
 import { gamePanelStyle } from "./utilities/_gamePanel";
+import { helpStyle } from "./utilities/_help";
 
 const GlobalCss = ({ children }) => {
     variableStyles()
@@ -32,6 +33,7 @@ const GlobalCss = ({ children }) => {
     footerStyle();
     customCardStyle();
     gamePanelStyle();
+    helpStyle();
 
     return children || null
 }

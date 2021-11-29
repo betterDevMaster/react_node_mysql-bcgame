@@ -39,13 +39,31 @@ export const navigations = [
     {
         name: 'Game Manage',
         icon: 'videogame_asset',
-        path: '/game/list',
+        path: '/game/management',
         auth: authRoles.editor,
     },
     {
         name: 'Promotions',
         path: '/promotions',
         icon: 'local_florist',
+        auth: authRoles.guest,
+    },
+    {
+        name: 'Favorite Games',
+        icon: 'favorite',
+        path: '/game/favorite',
+        auth: authRoles.guest,
+    },
+    {
+        name: 'Recent Play',
+        path: '/game/recent',
+        icon: 'timer',
+        auth: authRoles.guest,
+    },
+    {
+        name: 'Provably Fair',
+        path: '/fair',
+        icon: 'help',
         auth: authRoles.guest,
     },
     // {

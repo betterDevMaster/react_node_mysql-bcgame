@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import GameCarousel from './shared/GameCarousel'
 import GameBlogs from './shared/GameBlogs'
 import GameTab from './shared/GameTab'
-import OriginalGames from './shared/OriginalGames'
-import SlotGames from './shared/SlotGames'
-import CasinoGames from './shared/CasinoGames'
+import List from '../game/List'
 import Winners from './shared/Winners'
 import Lateset from './shared/Lateset'
 
@@ -23,19 +21,11 @@ const Analytics = () => {
     }
     return (
         <div className="analytics m-sm-30 mt-6">
-            <Lateset />
+            {/* <Lateset /> */}
             <GameCarousel />
             <GameTab list={gameReducer.data} onChange={handleTabChange} />
             {/* <GameBlogs /> */}
-            {curTab === 0 && (
-                <OriginalGames list={gameReducer.data} index={curTab} />
-            )}
-            {curTab === 1 && (
-                <SlotGames list={gameReducer.data} index={curTab} />
-            )}
-            {curTab === 2 && (
-                <CasinoGames list={gameReducer.data} index={curTab} />
-            )}
+            <List list={gameReducer.data} index={curTab} />
             <Winners />
         </div>
     )
